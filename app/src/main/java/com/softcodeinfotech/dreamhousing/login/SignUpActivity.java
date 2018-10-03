@@ -122,7 +122,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (response.body()!= null && response.isSuccessful()){
                         if (response.body().getStatus() ==1){
                             // store userdata to share prerference
-                            SharePreferenceUtils.getInstance().saveString(Constant.USER_DATA, response.body().getInformation().getUserId());
+                            SharePreferenceUtils.getInstance().saveString(Constant.USER_id, response.body().getInformation().getUserId());
                             SharePreferenceUtils.getInstance().saveString(Constant.USER_name, response.body().getInformation().getFullname());
                             SharePreferenceUtils.getInstance().saveString(Constant.USER_email, response.body().getInformation().getEmail());
                             SharePreferenceUtils.getInstance().saveString(Constant.USER_phone, response.body().getInformation().getPhone());

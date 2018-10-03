@@ -142,7 +142,7 @@ BottomNavigationView navigation;
             public boolean onMenuItemClick(MenuItem item) {
 
                 String title = (String) item.getTitle();
-                Toast.makeText(HomeActivity.this, title + " Selected !", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(HomeActivity.this, title + " Selected !", Toast.LENGTH_SHORT).show();
 
                /* switch (item.getItemId()) {
 
@@ -441,7 +441,7 @@ BottomNavigationView navigation;
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         String itemName = (String) item.getTitle();
-        Toast.makeText(HomeActivity.this, ""+itemName, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(HomeActivity.this, ""+itemName, Toast.LENGTH_SHORT).show();
         closeDrawer();
         switch ( item.getItemId())
         {
