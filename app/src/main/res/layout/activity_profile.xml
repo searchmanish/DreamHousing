@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey_light"
+    tools:context=".profile.ProfileActivity"
+    tools:layout_editor_absoluteY="25dp"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/MyToolbarTheme"
+        android:elevation="7dp"/>
+
+    <LinearLayout
+        android:id="@+id/linearUserName"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:text="User Name"/>
+        <TextView
+            android:id="@+id/userName"
+            android:paddingLeft="@dimen/padding_too_large_30"
+            android:layout_width="match_parent"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:text="DreamHouse"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearUserPhone"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:text="User Phone"/>
+        <TextView
+            android:id="@+id/userPhone"
+            android:paddingLeft="@dimen/padding_too_large_30"
+            android:layout_width="match_parent"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:text="DreamHouse"
+            />
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearUserEmail"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:text="User Email"/>
+            <TextView
+                android:id="@+id/userEmail"
+                android:paddingLeft="@dimen/padding_too_large_30"
+                android:layout_width="match_parent"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:text="DreamHouse"
+                />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

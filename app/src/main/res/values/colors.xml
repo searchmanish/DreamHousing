@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="txt_color">#000000</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="grey">#424242</color>
+    <color name="grey_light">#9E9E9E</color>
+
+    <color name="green_light">#388E3C</color>
+    <color name="dark_gold">#bf9b30</color>
+    <color name="colorRipple">#E040FB</color>
+
+    <color name="overflowMenuBg">#ede2b2</color>
+    <color name="grey_800">#838493</color>
+    <color name="contextual_background">#5ce2be</color>
+    <color name="contextualText">#e18383</color>
+    <color name="green">#00e676</color>
+
+    <color name="bgBottomNavigation">#fe485a</color>
+
+
+    // bottom naviggation
+
+    <color name="colorInactive">#747474</color>
+    <color name="colorActiveSmall">#FFFFFF</color>
+    <color name="colorInactiveSmall">#50FFFFFF</color>
+
+    <color name="color_tab_1">#455C65</color>
+    <color name="color_tab_2">#00886A</color>
+    <color name="color_tab_3">#8B6B62</color>
+    <color name="color_tab_4">#6C4A42</color>
+    <color name="color_tab_5">#F63D2B</color>
+
+    <color name="color_notification_back">#ffcd33</color>
+    <color name="color_notification_text">#3E4757</color>
+
+    <array name="tab_colors">
+        <item name="tab_1">#455C65</item>
+        <item name="tab_2">#00886A</item>
+        <item name="tab_3">#8B6B62</item>
+        <item name="tab_4">#6C4A42</item>
+        <item name="tab_5">#F63D2B</item>
+    </array>
+</resources>

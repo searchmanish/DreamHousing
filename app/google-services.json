@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "698558642164",
+    "firebase_url": "https://dreamhousing-9dc9b.firebaseio.com",
+    "project_id": "dreamhousing-9dc9b",
+    "storage_bucket": "dreamhousing-9dc9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698558642164:android:e50256323648015c",
+        "android_client_info": {
+          "package_name": "com.softcodeinfotech.dreamhousing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698558642164-70nst7t2gblahsag8trbeegvbagl0228.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softcodeinfotech.dreamhousing",
+            "certificate_hash": "55e2a3b0477d5e9b47db98833038f16b39781faa"
+          }
+        },
+        {
+          "client_id": "698558642164-trv8044r9r1e75vlpel4enjfcv8u5ltv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDppi1fiSTz0IdiXRSAiJjRMu521dGQP8c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698558642164-trv8044r9r1e75vlpel4enjfcv8u5ltv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
