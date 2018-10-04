@@ -1,7 +1,9 @@
 package com.softcodeinfotech.dreamhousing.home;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +28,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.github.javiersantos.appupdater.AppUpdaterUtils;
+import com.github.javiersantos.appupdater.enums.AppUpdaterError;
+import com.github.javiersantos.appupdater.objects.Update;
 import com.softcodeinfotech.dreamhousing.R;
 import com.softcodeinfotech.dreamhousing.beanResponse.GetbannerModel;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetails;
@@ -79,6 +85,9 @@ private AHBottomNavigation bottomNavigation;
     AVLoadingIndicatorView avi;
     private Toolbar mToolbar;
     private String TAG ="HomeActivity";
+    
+    //app updater from playstore library
+    AppUpdaterUtils appUpdaterUtils;
 
     //TextView
     TextView textView_fresh,textView_hotdeals,textView_owner,navName,navEmail;
@@ -89,6 +98,62 @@ BottomNavigationView navigation;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+      //app updater from playstore library
+
+        appUpdaterUtils = new AppUpdaterUtils(this)
+                //.setUpdateFrom(UpdateFrom.AMAZON)
+                //.setUpdateFrom(UpdateFrom.GITHUB)
+                //.setGitHubUserAndRepo("javiersantos", "AppUpdater")
+                //...
+                .withListener(new AppUpdaterUtils.UpdateListener() {
+                    @Override
+                    public void onSuccess(Update update, Boolean isUpdateAvailable) {
+                        final String nv = update.getLatestVersion();
+                        final String url = update.getUrlToDownload().toString();
+                        if (isUpdateAvailable) {
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
+                            alertDialogBuilder.setTitle("New Update Available");
+                            alertDialogBuilder.setMessage("Version " + nv + " is available to download." + "\n" + "Downloading the latest update you will get the latest features and improvements in YouthLive App.");
+                            alertDialogBuilder.setPositiveButton("Update",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface arg0, int arg1) {
+                                            Intent i = new Intent(Intent.ACTION_VIEW);
+                                            i.setData(Uri.parse(url));
+                                            startActivity(i);
+                                        }
+                                    });
+
+                            alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    dialog.dismiss();
+
+                                }
+                            });
+
+                            AlertDialog alertDialog = alertDialogBuilder.create();
+                            alertDialog.show();
+                        }
+
+                        //    Log.d("Latest Version", update.getLatestVersion());
+                        //    Log.d("Latest Version Code", update.getLatestVersionCode());
+                        //     Log.d("Release notes", update.getReleaseNotes());
+                        //    Log.d("URL", update.getUrlToDownload());
+                        //   Log.d("Is update available?", Boolean.toString(isUpdateAvailable));
+                    }
+
+                    @Override
+                    public void onFailed(AppUpdaterError error) {
+                        Log.d("AppUpdater Error", "Something went wrong");
+                    }
+                });
+        appUpdaterUtils.start();
+
+
+        //
 
         avi= findViewById(R.id.avi);
 
@@ -565,17 +630,17 @@ BottomNavigationView navigation;
 
                             } else {
 
-                                remoteBanners.add(new RemoteBanner("http://beliefitsolution.com/buyonline/downloads/preview.jpg"
+                                remoteBanners.add(new RemoteBanner("http://dreamhousing.in/property/banner/preview3.png"
                                 ));
-                                remoteBanners.add(new RemoteBanner("http://beliefitsolution.com/buyonline/downloads/preview.jpg"
+                                remoteBanners.add(new RemoteBanner("http://dreamhousing.in/property/banner/preview3.png"
                                 ));
                             }
 
                             bannerSlider.setBanners(remoteBanners);
                         } else {
-                            remoteBanners.add(new RemoteBanner("http://beliefitsolution.com/buyonline/downloads/preview.jpg"
+                            remoteBanners.add(new RemoteBanner("http://dreamhousing.in/property/banner/preview3.png"
                             ));
-                            remoteBanners.add(new RemoteBanner("http://beliefitsolution.com/buyonline/downloads/preview.jpg"
+                            remoteBanners.add(new RemoteBanner("http://dreamhousing.in/property/banner/preview3.png"
                             ));
                             bannerSlider.setBanners(remoteBanners);
                         }

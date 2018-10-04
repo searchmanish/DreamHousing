@@ -8,7 +8,7 @@ import retrofit2.http.Part;
 
 public interface Api {
 
-    String BASE_URL = "http://beliefitsolution.com/property/";
+    String BASE_URL = "http://dreamhousing.in/property/";
 
     //this is our multipart request
     //we have two parameters on is name and other one is description

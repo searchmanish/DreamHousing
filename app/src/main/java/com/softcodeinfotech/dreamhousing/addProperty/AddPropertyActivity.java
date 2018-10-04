@@ -71,7 +71,7 @@ public class AddPropertyActivity extends AppCompatActivity {
                mrp= mMrp.getText().toString().trim();
                details = mDetails.getText().toString().trim();
                propertyType = mPropertyTtype.getText().toString().trim();
-              Snackbar.make(rootlayout, " " + address +"mrp "+ mrp +"details "+ details + "propertyType "+propertyType, Snackbar.LENGTH_LONG).show();
+            //  Snackbar.make(rootlayout, " " + address +"mrp "+ mrp +"details "+ details + "propertyType "+propertyType, Snackbar.LENGTH_LONG).show();
               dataValidation();
               if(isValid)
               {
@@ -133,11 +133,12 @@ public class AddPropertyActivity extends AppCompatActivity {
                     if (response.body()!= null && response.isSuccessful()){
                         if (response.body().getStatus() ==1){
                             String property_id=""+response.body().getInformation().getPropertyId();
-                            Toast.makeText(AddPropertyActivity.this, "Property id= "+response.body().getInformation().getPropertyId(), Toast.LENGTH_SHORT).show();
+
+                           /* Toast.makeText(AddPropertyActivity.this, "Property id= "+response.body().getInformation().getPropertyId(), Toast.LENGTH_SHORT).show();
                             Snackbar snackbar = Snackbar.make(rootlayout,"Property Added Sucessfully",Snackbar.LENGTH_LONG);
                             View snackBarView = snackbar.getView();
                             snackBarView.setBackgroundColor(getResources().getColor(R.color.green));
-                            snackbar.show();
+                            snackbar.show();*/
 
                             // start home activity
                             Intent intent = new Intent(AddPropertyActivity.this, ImageActivity.class);
