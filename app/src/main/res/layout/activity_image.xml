@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.18"
-        android:src="@drawable/dreamhouse" />
+        android:src="@drawable/ic_displayicon" />
     <Button
         android:id="@+id/uploadButton"
         android:layout_width="wrap_content"

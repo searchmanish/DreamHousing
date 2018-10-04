@@ -281,13 +281,13 @@ public class SigninActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        SharePreferenceUtils.getInstance().saveString(Constant.USER_DATA, id);
+        SharePreferenceUtils.getInstance().saveString(Constant.USER_id, id);
         SharePreferenceUtils.getInstance().saveString(Constant.USER_name, first_name);
 
         //Saving user Data into database
         socialRegister(fullname, email, id, type);
 
-        Toast.makeText(SigninActivity.this, "" + first_name + "" + last_name, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(SigninActivity.this, "" + first_name + "" + last_name, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
@@ -329,7 +329,7 @@ public class SigninActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(SigninActivity.this, "sign in sucess", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(SigninActivity.this, "sign in sucess", Toast.LENGTH_SHORT).show();
                             updateUI();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -358,7 +358,7 @@ public class SigninActivity extends AppCompatActivity {
             type = "Gmail";
            // timestamp = "gmail_XXXXXXX";
 
-            Toast.makeText(SigninActivity.this, "" + first_name, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(SigninActivity.this, "" + first_name, Toast.LENGTH_SHORT).show();
 
             //Saving user Data into database
             socialRegister(first_name, email, id, type);
@@ -381,7 +381,7 @@ public class SigninActivity extends AppCompatActivity {
     }
 
 
-    public void socialRegister(String fullname, String email, String uid, String type) {
+    public void socialRegister(final String fullname, final String email, String uid, String type) {
 
 
         ServiceWrapper serviceWrapper = new ServiceWrapper(null);
@@ -396,6 +396,13 @@ public class SigninActivity extends AppCompatActivity {
                 if (response.body() != null && response.isSuccessful()) {
                     //    Log.e(TAG, "  ss sixe 2 ");
                     if (response.body().getStatus() == 1) {
+
+                        //
+                        //SharePreferenceUtils.getInstance().saveString(Constant.USER_id, id);
+
+                        SharePreferenceUtils.getInstance().saveString(Constant.USER_email,email);
+                        SharePreferenceUtils.getInstance().saveString(Constant.USER_name,fullname);
+
 
 
                     } else {

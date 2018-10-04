@@ -27,8 +27,8 @@ public class MyApp extends Application {
                                           Bundle savedInstanceState) {
 
                 // new activity created; force its orientation to portrait
-                activity.setRequestedOrientation(
-                        ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            //    activity.setRequestedOrientation(
+             //           ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
             }
 

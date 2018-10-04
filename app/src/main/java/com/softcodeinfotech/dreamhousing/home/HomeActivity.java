@@ -1,5 +1,6 @@
 package com.softcodeinfotech.dreamhousing.home;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,10 +18,13 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.softcodeinfotech.dreamhousing.R;
 import com.softcodeinfotech.dreamhousing.beanResponse.GetbannerModel;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetails;
@@ -88,6 +92,22 @@ BottomNavigationView navigation;
 
         avi= findViewById(R.id.avi);
 
+        //Force crashing by firebase
+
+       /* Button crashButton = new Button(this);
+        crashButton.setText("Crash!");
+        crashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Crashlytics.getInstance().crash(); // Force a crash
+            }
+        });
+
+        addContentView(crashButton, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));*/
+
+    //
+
         String sName= SharePreferenceUtils.getInstance().getString(Constant.USER_name);
         String sEmail= SharePreferenceUtils.getInstance().getString(Constant.USER_email);
 
@@ -124,6 +144,7 @@ BottomNavigationView navigation;
        // mToolbar.setSubtitle("  by Abc ");
          
         // //setUpNavigationDrawer menu
+        @SuppressLint("CutPasteId")
         NavigationView navigationView = findViewById(R.id.navigationView);
         mDrawerLayout=findViewById(R.id.drawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(HomeActivity.this,mDrawerLayout,mToolbar,

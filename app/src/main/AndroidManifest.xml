@@ -25,7 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -47,29 +48,41 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.SignUpActivity" />
+        <activity android:name=".login.SignUpActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".login.SigninActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".login.ForgotPasswordActivity" />
-        <activity android:name=".login.OTP_verify" />
-        <activity android:name=".login.New_Password" />
-        <activity android:name=".search.SearchActivity" />
-        <activity android:name=".addProperty.ImageActivity" />
-        <activity android:name=".home.HomeActivity" />
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".login.ForgotPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".login.OTP_verify"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".login.New_Password"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".search.SearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".addProperty.ImageActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".home.HomeActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".home.DetailsActivity"
             android:theme="@style/AppTheme1"
-            android:parentActivityName=".home.HomeActivity" />
+            android:parentActivityName=".home.HomeActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".settings.SettingsActivity"
-            android:parentActivityName=".home.HomeActivity" />
+            android:parentActivityName=".home.HomeActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".addProperty.AddPropertyActivity"
             android:parentActivityName=".home.HomeActivity"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
         <activity android:name=".profile.ProfileActivity"
-            android:parentActivityName=".home.HomeActivity"></activity>
+            android:parentActivityName=".home.HomeActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

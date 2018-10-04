@@ -23,7 +23,7 @@
             android:id="@+id/logo"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/toolbar"
-            android:src="@drawable/splash"
+            android:src="@drawable/ic_displayicon"
             android:layout_marginTop="@dimen/padding_too_large_30"
             android:layout_marginBottom="@dimen/padding_small_5"/>
         <LinearLayout

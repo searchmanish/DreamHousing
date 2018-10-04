@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="190dp"
-    android:background="@drawable/header">
+    android:background="@drawable/nav_imagee">
     <!-- Subtitle : 56dp -->
     <!--  Name: Roboto Medium, 14sp, #FFFFFF -->
     <!--  Email address: Roboto Regular, 14sp, #FFFFFF -->
