@@ -213,7 +213,7 @@ public class AddPropertyActivity extends AppCompatActivity {
 
 
         if (isValid) {
-            Toast.makeText(AddPropertyActivity.this, "Data Verified", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(AddPropertyActivity.this, "Data Verified", Toast.LENGTH_SHORT).show();
         }
     }
 }

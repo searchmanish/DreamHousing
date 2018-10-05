@@ -85,7 +85,7 @@ private AHBottomNavigation bottomNavigation;
     AVLoadingIndicatorView avi;
     private Toolbar mToolbar;
     private String TAG ="HomeActivity";
-    
+
     //app updater from playstore library
     AppUpdaterUtils appUpdaterUtils;
 
@@ -113,8 +113,8 @@ BottomNavigationView navigation;
                         final String url = update.getUrlToDownload().toString();
                         if (isUpdateAvailable) {
                             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
-                            alertDialogBuilder.setTitle("New Update Available");
-                            alertDialogBuilder.setMessage("Version " + nv + " is available to download." + "\n" + "Downloading the latest update you will get the latest features and improvements in YouthLive App.");
+                            alertDialogBuilder.setTitle("Update Available");
+                            alertDialogBuilder.setMessage("Version " + nv + " is available to download." + "\n" + "Downloading the latest update you will get the latest features and improvements in Dreamhousing App.");
                             alertDialogBuilder.setPositiveButton("Update",
                                     new DialogInterface.OnClickListener() {
                                         @Override

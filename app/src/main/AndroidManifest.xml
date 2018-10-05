@@ -94,6 +94,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".profile.AddedProperty"
             android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>

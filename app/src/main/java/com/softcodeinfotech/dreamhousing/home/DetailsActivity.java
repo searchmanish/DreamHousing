@@ -1,6 +1,7 @@
 package com.softcodeinfotech.dreamhousing.home;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -10,9 +11,12 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +42,8 @@ public class DetailsActivity extends AppCompatActivity {
     String phone;
     String address;
 
+
+
      /* intent.putExtra("property_phone", model.getProperty_phone());
                 intent.putExtra("property_img_url", model.getProperty_image());
                 intent.putExtra("property_details",model.getProperty_details());
@@ -53,6 +59,7 @@ public class DetailsActivity extends AppCompatActivity {
         rootlayout = findViewById(R.id.main_content);
 
         setUpWidget();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Toolbar Title");
@@ -133,7 +140,42 @@ public class DetailsActivity extends AppCompatActivity {
                         }
                     } else {
 
-                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+
+                        AlertDialog.Builder alerDialog = new AlertDialog.Builder(DetailsActivity.this,R.style.CallAlertDialogStyle);
+                        alerDialog.setIcon(R.drawable.ic_displayicon);
+                        alerDialog.setTitle("Call Agent/Owner");
+                       // alerDialog.setMessage("Sure would you like to call ?");
+                        alerDialog.setPositiveButton("call", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                callIntent.setData(Uri.parse("tel:" + property_call));
+                                startActivity(callIntent);
+                                if (ActivityCompat.checkSelfPermission(DetailsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                    // TODO: Consider calling
+                                    //    ActivityCompat#requestPermissions
+                                    // here to request the missing permissions, and then overriding
+                                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                    //                                          int[] grantResults)
+                                    // to handle the case where the user grants the permission. See the documentation
+                                    // for ActivityCompat#requestPermissions for more details.
+                                    return;
+                                }
+                                startActivity(callIntent);
+                            }
+                        });
+
+                        alerDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+
+                        AlertDialog alertDialog = alerDialog.create();
+                        alertDialog.show();
+
+                       /* Intent callIntent = new Intent(Intent.ACTION_CALL);
                         callIntent.setData(Uri.parse("tel:" + property_call));
                         startActivity(callIntent);
                         if (ActivityCompat.checkSelfPermission(DetailsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -146,7 +188,7 @@ public class DetailsActivity extends AppCompatActivity {
                             // for ActivityCompat#requestPermissions for more details.
                             return;
                         }
-                        startActivity(callIntent);
+                        startActivity(callIntent);*/
 
                     }
                 }
@@ -167,5 +209,36 @@ public class DetailsActivity extends AppCompatActivity {
         prop_details = findViewById(R.id.prop_details);
         prop_mrp = findViewById(R.id.prop_mrp);
         prop_location = findViewById(R.id.prop_location);
+
     }
 }
+
+
+
+//
+/*
+AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
+                            alertDialogBuilder.setTitle("Update Available");
+                                    alertDialogBuilder.setMessage("Version " + nv + " is available to download." + "\n" + "Downloading the latest update you will get the latest features and improvements in Dreamhousing App.");
+                                    alertDialogBuilder.setPositiveButton("Update",
+                                    new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface arg0, int arg1) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+        }
+        });
+
+        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+
+        dialog.dismiss();
+
+        }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+        }*/

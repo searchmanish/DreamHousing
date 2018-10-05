@@ -50,11 +50,25 @@
         <item name="android:textColorPrimary">@color/grey_800</item><!-- Text color of Overflow Menu items-->
     </style>
 
+    <style name="CallAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#FFCC00</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#5fa3d0</item>
+        <item name="android:background">#FFDBCF</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:windowBackground">@drawable/rounder_corner_black</item>
+        <item name="android:typeface">monospace</item>
+
+    </style>
+
 </resources>
 
     <!--Unless specified otherwise, all of the below tinting applies to both Lollipop and pre-Lollipop using AppCompat v21.
     To use the support version of these attributes, remove the android namespace.
 
+    <item name="android:background">#5fa3d0</item>
+      #FFDBCF==green
+      <item name="android:background">#FFDBCF</item>
     For instance, "android:colorControlNormal" becomes "colorControlNormal".
 
     These attributes will be propagated to their corresponding attributes within the android namespace

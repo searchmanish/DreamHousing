@@ -127,7 +127,7 @@ public class ImageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ImageResponse> call, Response<ImageResponse> response) {
                 if (!response.body().error) {
-                    Toast.makeText(ImageActivity.this, "File Uploaded Successfully...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ImageActivity.this, "Image Uploaded Successfully...", Toast.LENGTH_LONG).show();
 
                     continueButton.setEnabled(true);
                     continueButton.setOnClickListener(new View.OnClickListener() {
