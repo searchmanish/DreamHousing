@@ -21,13 +21,9 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.github.javiersantos.appupdater.AppUpdaterUtils;
 import com.github.javiersantos.appupdater.enums.AppUpdaterError;
 import com.github.javiersantos.appupdater.objects.Update;
@@ -37,6 +33,7 @@ import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetails;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetailsHot;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetailsOwner;
 import com.softcodeinfotech.dreamhousing.login.SigninActivity;
+import com.softcodeinfotech.dreamhousing.myaccount.AddedProperty;
 import com.softcodeinfotech.dreamhousing.profile.ProfileActivity;
 import com.softcodeinfotech.dreamhousing.settings.SettingsActivity;
 import com.softcodeinfotech.dreamhousing.utility.AppUtilits;
@@ -100,6 +97,8 @@ BottomNavigationView navigation;
         setContentView(R.layout.activity_home);
 
       //app updater from playstore library
+
+
 
         appUpdaterUtils = new AppUpdaterUtils(this)
                 //.setUpdateFrom(UpdateFrom.AMAZON)
@@ -587,14 +586,20 @@ BottomNavigationView navigation;
                     Intent homeIntent = new Intent(HomeActivity.this,HomeActivity.class);
                     startActivity(homeIntent);
                     return true;
-                case R.id.navigation_profile:
+              /*  case R.id.navigation_profile:
                    // Toast.makeText(HomeActivity.this, "Clicked on profile", Toast.LENGTH_SHORT).show();
                     // toolbar.setTitle("Profile");
                    // navigation.setItemBackgroundResource(R.color.green);
                     Intent profileIntent = new Intent(HomeActivity.this, ProfileActivity.class);
                     startActivity(profileIntent);
 
+                    return true;*/
+
+                case R.id.my_account:
+                    Intent accountIntent = new Intent(HomeActivity.this, AddedProperty.class);
+                    startActivity(accountIntent);
                     return true;
+
                 case R.id.addProperty:
                    // Toast.makeText(HomeActivity.this, "Clicked on Share", Toast.LENGTH_SHORT).show();
                     //toolbar.setTitle("Share");

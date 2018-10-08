@@ -92,7 +92,7 @@
             android:name=".profile.ProfileActivity"
             android:parentActivityName=".home.HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".profile.AddedProperty"
+        <activity android:name=".myaccount.AddedProperty"
             android:screenOrientation="portrait"></activity>
 
     </application>

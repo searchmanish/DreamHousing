@@ -23,7 +23,9 @@ import com.softcodeinfotech.dreamhousing.R;
 import com.softcodeinfotech.dreamhousing.home.HomeActivity;
 
 import java.io.File;
+import java.io.IOException;
 
+import id.zelory.compressor.Compressor;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -36,6 +38,7 @@ public class ImageActivity extends AppCompatActivity {
    ImageView imageView;
    String property_id;
    Button uploadButton,continueButton;
+    File compressedImageFile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,11 +99,16 @@ public class ImageActivity extends AppCompatActivity {
 
     private void uploadFile(Uri fileUri, String desc, String p_id) {
 
+
         //creating a file
         File file = new File(getRealPathFromURI(fileUri));
-
+        try {
+             compressedImageFile = new Compressor(this).compressToFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //creating request body for file
-        RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), file);
+        RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)),compressedImageFile );
         RequestBody descBody = RequestBody.create(MediaType.parse("text/plain"), desc);
         RequestBody prop_id = RequestBody.create(MediaType.parse("text/plain"), p_id);
 

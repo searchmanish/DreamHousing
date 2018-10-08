@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import com.bumptech.glide.Glide;
 import com.softcodeinfotech.dreamhousing.R;
 
@@ -85,6 +86,10 @@ public class PropertyAdapterFresh extends RecyclerView.Adapter<RecyclerView.View
         Glide.with(mContext)
                 .load(model.getProperty_image())
                 .into(((PropertyAdapterFreshHolder) holder).property_image);
+
+
+
+
 
         ((PropertyAdapterFreshHolder) holder).cardView.setOnClickListener(new View.OnClickListener() {
             @Override

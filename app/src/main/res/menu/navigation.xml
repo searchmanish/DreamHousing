@@ -2,21 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/home"
+        android:icon="@drawable/ic_home2"
         android:title="@string/home" />
 
-    <item
+   <!-- <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/profile"
-        android:title="Profile" />
+        android:title="Profile" />-->
 
    <!-- <item
         android:id="@+id/navigation_share"
         android:icon="@drawable/share"
         android:title="share" />-->
     <item
+        android:id="@+id/my_account"
+        android:icon="@drawable/ic_my_acc"
+        android:title="My Account"
+        />
+    <item
         android:id="@+id/addProperty"
-        android:icon="@drawable/add_property"
+        android:icon="@drawable/ic_plus_add"
         android:title="Add Property"/>
 
 
