@@ -7,6 +7,7 @@ import com.softcodeinfotech.dreamhousing.BuildConfig;
 import com.softcodeinfotech.dreamhousing.beanResponse.AddProperty;
 import com.softcodeinfotech.dreamhousing.beanResponse.ForgotPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.GetbannerModel;
+import com.softcodeinfotech.dreamhousing.beanResponse.MyAccountItemsDetails;
 import com.softcodeinfotech.dreamhousing.beanResponse.NewPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.NewUserRegistration;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetails;
@@ -131,6 +132,13 @@ public class ServiceWrapper {
     // get banner image
     public Call<GetbannerModel> getbannerModelCall(String securcode){
         return mServiceInterface.getbannerimagecall(convertPlainString(securcode) );
+    }
+
+    //get user AccountItemsDetails
+
+    public  Call<MyAccountItemsDetails> getUserAccountItemsdetails(String securecode,String user_id)
+    {
+        return mServiceInterface.getAccountItems(convertPlainString(securecode),convertPlainString(user_id));
     }
 
     // convert aa param into plain text

@@ -2,101 +2,98 @@ package com.softcodeinfotech.dreamhousing.myaccount;
 
 public class AccountDetailsModel {
 
-  /*  @SerializedName("property_id")
+  /*  @SerializedName("id")
     @Expose
     private Integer propertyId;
-    @SerializedName("property_details")
+    @SerializedName("details")
     @Expose
     private String propertyDetails;
-    @SerializedName("property_mrp")
+    @SerializedName("mrp")
     @Expose
     private Integer propertyMrp;
     @SerializedName("Property_address")
     @Expose
     private String propertyAddress;
-    @SerializedName("property_phone")
+    @SerializedName("phone")
     @Expose
     private String propertyPhone;
-    @SerializedName("property_image")
+    @SerializedName("image")
     @Expose
     private String propertyImage;
-    @SerializedName("property_listing_date")
+    @SerializedName("listing_date")
     @Expose
     private String propertyListingDate;
-    @SerializedName("property_rating")
+    @SerializedName("rating")
     @Expose
     private Integer propertyRating;
     @SerializedName("Property_type")
     @Expose
     private String propertyType;
-    @SerializedName("property_category")
+    @SerializedName("category")
     @Expose
     private Integer propertyCategory;*/
 
 
 
-    private String property_details,property_address,property_phone,property_image;
-    private Double property_mrp;
-    private Integer property_id;
+    private String acc_details,acc_address,acc_phone,acc_image;
+    private Double acc_mrp;
+    private Integer acc_prop_id;
 
-    public AccountDetailsModel(Integer property_id,String property_details, String property_address,
-                               String property_phone, String property_image, Double property_mrp) {
-        this.property_id = property_id;
-        this.property_details = property_details;
-        this.property_address = property_address;
-        this.property_phone = property_phone;
-        this.property_image = property_image;
-        this.property_mrp = property_mrp;
+    public AccountDetailsModel(String acc_details, String acc_address, String acc_phone,
+                               String acc_image, Double acc_mrp, Integer acc_prop_id) {
+        this.acc_details = acc_details;
+        this.acc_address = acc_address;
+        this.acc_phone = acc_phone;
+        this.acc_image = acc_image;
+        this.acc_mrp = acc_mrp;
+        this.acc_prop_id = acc_prop_id;
     }
 
-    public String getProperty_details() {
-        return property_details;
+    public String getAcc_details() {
+        return acc_details;
     }
 
-    public void setProperty_details(String property_details) {
-        this.property_details = property_details;
+    public void setAcc_details(String acc_details) {
+        this.acc_details = acc_details;
     }
 
-    public String getProperty_address() {
-        return property_address;
+    public String getAcc_address() {
+        return acc_address;
     }
 
-    public void setProperty_address(String property_address) {
-        this.property_address = property_address;
+    public void setAcc_address(String acc_address) {
+        this.acc_address = acc_address;
     }
 
-    public String getProperty_phone() {
-        return property_phone;
+    public String getAcc_phone() {
+        return acc_phone;
     }
 
-    public void setProperty_phone(String property_phone) {
-        this.property_phone = property_phone;
+    public void setAcc_phone(String acc_phone) {
+        this.acc_phone = acc_phone;
     }
 
-    public String getProperty_image() {
-        return property_image;
+    public String getAcc_image() {
+        return acc_image;
     }
 
-    public void setProperty_image(String property_image) {
-        this.property_image = property_image;
+    public void setAcc_image(String acc_image) {
+        this.acc_image = acc_image;
     }
 
-    public Double getProperty_mrp() {
-        return property_mrp;
+    public Double getAcc_mrp() {
+        return acc_mrp;
     }
 
-    public void setProperty_mrp(Double property_mrp) {
-        this.property_mrp = property_mrp;
+    public void setAcc_mrp(Double acc_mrp) {
+        this.acc_mrp = acc_mrp;
     }
 
-    public Integer getProperty_id() {
-        return property_id;
+    public Integer getAcc_id() {
+        return acc_prop_id;
     }
 
-    public void setProperty_id(Integer property_id) {
-        this.property_id = property_id;
+    public void setAcc_id(Integer acc_id) {
+        this.acc_prop_id = acc_prop_id;
     }
-
-
-
 }

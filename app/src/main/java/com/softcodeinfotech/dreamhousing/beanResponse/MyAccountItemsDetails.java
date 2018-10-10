@@ -51,7 +51,7 @@ public class MyAccountItemsDetails {
         private String propertyDetails;
         @SerializedName("property_mrp")
         @Expose
-        private Integer propertyMrp;
+        private Double propertyMrp;
         @SerializedName("Property_address")
         @Expose
         private String propertyAddress;
@@ -90,11 +90,11 @@ public class MyAccountItemsDetails {
             this.propertyDetails = propertyDetails;
         }
 
-        public Integer getPropertyMrp() {
+        public Double getPropertyMrp() {
             return propertyMrp;
         }
 
-        public void setPropertyMrp(Integer propertyMrp) {
+        public void setPropertyMrp(Double propertyMrp) {
             this.propertyMrp = propertyMrp;
         }
 

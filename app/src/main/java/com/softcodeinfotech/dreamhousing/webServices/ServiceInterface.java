@@ -4,6 +4,7 @@ package com.softcodeinfotech.dreamhousing.webServices;
 import com.softcodeinfotech.dreamhousing.beanResponse.AddProperty;
 import com.softcodeinfotech.dreamhousing.beanResponse.ForgotPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.GetbannerModel;
+import com.softcodeinfotech.dreamhousing.beanResponse.MyAccountItemsDetails;
 import com.softcodeinfotech.dreamhousing.beanResponse.NewPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.NewUserRegistration;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetails;
@@ -119,5 +120,12 @@ public interface ServiceInterface {
     Call<GetbannerModel> getbannerimagecall(
             @Part("securecode") RequestBody securecode
     );
+
+    //get AccountItemDetails
+    @Multipart
+    @POST("property/myaccountdetails.php")
+    Call<MyAccountItemsDetails> getAccountItems(
+            @Part("securecode")RequestBody securecode,
+            @Part("user_id") RequestBody user_id );
 
 }
