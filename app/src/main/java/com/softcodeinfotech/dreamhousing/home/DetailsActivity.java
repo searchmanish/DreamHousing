@@ -62,7 +62,7 @@ public class DetailsActivity extends AppCompatActivity {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Toolbar Title");
+        toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,7 +73,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
-        collapsingToolbar.setTitle("Dream Housing");
+       // collapsingToolbar.setTitle("Dream Housing");
 
 
         final Intent intent = getIntent();

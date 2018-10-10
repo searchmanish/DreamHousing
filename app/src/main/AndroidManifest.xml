@@ -92,9 +92,12 @@
             android:name=".profile.ProfileActivity"
             android:parentActivityName=".home.HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".myaccount.AddedProperty"
-            android:screenOrientation="portrait"></activity>
-
+        <activity
+            android:name=".myaccount.AddedProperty"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".home.HomeActivity"
+            />
+        <activity android:name=".search.FullListActivity"></activity>
     </application>
 
 </manifest>
