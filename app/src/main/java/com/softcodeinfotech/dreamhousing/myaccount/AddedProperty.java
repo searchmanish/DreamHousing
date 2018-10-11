@@ -1,7 +1,7 @@
 package com.softcodeinfotech.dreamhousing.myaccount;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,10 +12,6 @@ import android.view.WindowManager;
 
 import com.softcodeinfotech.dreamhousing.R;
 import com.softcodeinfotech.dreamhousing.beanResponse.MyAccountItemsDetails;
-import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetails;
-import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetailsOwner;
-import com.softcodeinfotech.dreamhousing.home.HomeActivity;
-import com.softcodeinfotech.dreamhousing.home.PropertyDetailsModelFresh;
 import com.softcodeinfotech.dreamhousing.utility.AppUtilits;
 import com.softcodeinfotech.dreamhousing.utility.Constant;
 import com.softcodeinfotech.dreamhousing.utility.NetworkUtility;
@@ -62,8 +58,6 @@ public class AddedProperty extends AppCompatActivity {
 
         accountDetailsAdapter = new AccountDetailsAdapter(this, mPAccountDetailsList, GetScreenWidth());
         recycler_accDetails.setAdapter(accountDetailsAdapter);
-
-        recycler_accDetails.setItemAnimator(new DefaultItemAnimator());
 
 
         getAccountItemDetails();

@@ -14,13 +14,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.softcodeinfotech.dreamhousing.EnquireActivity;
 import com.softcodeinfotech.dreamhousing.R;
 import com.softcodeinfotech.dreamhousing.login.SigninActivity;
 import com.softcodeinfotech.dreamhousing.utility.Constant;
@@ -31,7 +30,7 @@ public class DetailsActivity extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     ImageView imageView;
 
-    TextView prop_details,prop_mrp,prop_location;
+    TextView prop_details, prop_mrp, prop_location, call_agent, enquire_now;
 
     String userName;
     String userMobile;
@@ -94,7 +93,7 @@ public class DetailsActivity extends AppCompatActivity {
        // Toast.makeText(DetailsActivity.this, ""+details +""+mrp +""+address +""+phone, Toast.LENGTH_LONG).show();
 
 
-         imageView = findViewById(R.id.col_imageview);
+        imageView = findViewById(R.id.col_imageview);
         Glide.with(DetailsActivity.this)
                 .load(image_url)
                 .into(imageView);
@@ -119,61 +118,61 @@ public class DetailsActivity extends AppCompatActivity {
         } */
 
 
-            floatingActionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (userMobile.isEmpty()) {
-                        {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userMobile.isEmpty()) {
+                    {
 
-                            Snackbar snackbar = Snackbar.make(rootlayout, "Your are not login ", Snackbar.LENGTH_LONG);
-                            View snackBarView = snackbar.getView();
-                            snackBarView.setBackgroundColor(getResources().getColor(R.color.green));
-                            snackbar.show();
-                            snackbar.setAction("Login", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent detailsIntent = new Intent(DetailsActivity.this, SigninActivity.class);
-                                    startActivity(detailsIntent);
-                                    finish();
-                                }
-                            });
+                        Snackbar snackbar = Snackbar.make(rootlayout, "Your are not login ", Snackbar.LENGTH_LONG);
+                        View snackBarView = snackbar.getView();
+                        snackBarView.setBackgroundColor(getResources().getColor(R.color.green));
+                        snackbar.show();
+                        snackbar.setAction("Login", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent detailsIntent = new Intent(DetailsActivity.this, SigninActivity.class);
+                                startActivity(detailsIntent);
+                                finish();
+                            }
+                        });
+                    }
+                } else {
+
+
+                    AlertDialog.Builder alerDialog = new AlertDialog.Builder(DetailsActivity.this,R.style.CallAlertDialogStyle);
+                    alerDialog.setIcon(R.drawable.ic_displayicon);
+                    alerDialog.setTitle("Call Agent/Owner");
+                    // alerDialog.setMessage("Sure would you like to call ?");
+                    alerDialog.setPositiveButton("call", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent callIntent = new Intent(Intent.ACTION_CALL);
+                            callIntent.setData(Uri.parse("tel:" + property_call));
+                            startActivity(callIntent);
+                            if (ActivityCompat.checkSelfPermission(DetailsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                // TODO: Consider calling
+                                //    ActivityCompat#requestPermissions
+                                // here to request the missing permissions, and then overriding
+                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                //                                          int[] grantResults)
+                                // to handle the case where the user grants the permission. See the documentation
+                                // for ActivityCompat#requestPermissions for more details.
+                                return;
+                            }
+                            startActivity(callIntent);
                         }
-                    } else {
+                    });
 
+                    alerDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
 
-                        AlertDialog.Builder alerDialog = new AlertDialog.Builder(DetailsActivity.this,R.style.CallAlertDialogStyle);
-                        alerDialog.setIcon(R.drawable.ic_displayicon);
-                        alerDialog.setTitle("Call Agent/Owner");
-                       // alerDialog.setMessage("Sure would you like to call ?");
-                        alerDialog.setPositiveButton("call", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                                callIntent.setData(Uri.parse("tel:" + property_call));
-                                startActivity(callIntent);
-                                if (ActivityCompat.checkSelfPermission(DetailsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                                    // TODO: Consider calling
-                                    //    ActivityCompat#requestPermissions
-                                    // here to request the missing permissions, and then overriding
-                                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                    //                                          int[] grantResults)
-                                    // to handle the case where the user grants the permission. See the documentation
-                                    // for ActivityCompat#requestPermissions for more details.
-                                    return;
-                                }
-                                startActivity(callIntent);
-                            }
-                        });
-
-                        alerDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        });
-
-                        AlertDialog alertDialog = alerDialog.create();
-                        alertDialog.show();
+                    AlertDialog alertDialog = alerDialog.create();
+                    alertDialog.show();
 
                        /* Intent callIntent = new Intent(Intent.ACTION_CALL);
                         callIntent.setData(Uri.parse("tel:" + property_call));
@@ -190,12 +189,114 @@ public class DetailsActivity extends AppCompatActivity {
                         }
                         startActivity(callIntent);*/
 
-                    }
                 }
-            });
+            }
+        });
+
+// call agent button
+        call_agent = findViewById(R.id.callagent);
+        enquire_now = findViewById(R.id.enquirenow);
+
+      /*  if(userMobile.isEmpty())
+        {
+            {
+
+                Snackbar snackbar = Snackbar.make(rootlayout, "Your are not login ", Snackbar.LENGTH_LONG);
+                snackbar.show();
+                snackbar.setAction("Login", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent detailsIntent = new Intent(DetailsActivity.this, SigninActivity.class);
+                        startActivity(detailsIntent);
+                        finish();
+                    }
+                });
+            }
+        } */
 
 
+        call_agent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userMobile.isEmpty()) {
+                    {
 
+                        Snackbar snackbar = Snackbar.make(rootlayout, "Login/Register needed to access contacts ", Snackbar.LENGTH_LONG);
+                        View snackBarView = snackbar.getView();
+                        snackBarView.setBackgroundColor(getResources().getColor(R.color.green));
+                        snackbar.show();
+                        snackbar.setAction("Login", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent detailsIntent = new Intent(DetailsActivity.this, SigninActivity.class);
+                                startActivity(detailsIntent);
+                                finish();
+                            }
+                        });
+                    }
+                } else {
+
+
+                    AlertDialog.Builder alerDialog = new AlertDialog.Builder(DetailsActivity.this, R.style.CallAlertDialogStyle);
+                    alerDialog.setIcon(R.drawable.ic_displayicon);
+                    alerDialog.setTitle("Call Owner/ Agent");
+                    // alerDialog.setMessage("Sure would you like to call ?");
+                    alerDialog.setPositiveButton("call", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent callIntent = new Intent(Intent.ACTION_CALL);
+                            callIntent.setData(Uri.parse("tel:" + property_call));
+                            startActivity(callIntent);
+                            if (ActivityCompat.checkSelfPermission(DetailsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                // TODO: Consider calling
+                                //    ActivityCompat#requestPermissions
+                                // here to request the missing permissions, and then overriding
+                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                //                                          int[] grantResults)
+                                // to handle the case where the user grants the permission. See the documentation
+                                // for ActivityCompat#requestPermissions for more details.
+                                return;
+                            }
+                            startActivity(callIntent);
+                        }
+                    });
+
+                    alerDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+
+                    AlertDialog alertDialog = alerDialog.create();
+                    alertDialog.show();
+
+                       /* Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:" + property_call));
+                        startActivity(callIntent);
+                        if (ActivityCompat.checkSelfPermission(DetailsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            return;
+                        }
+                        startActivity(callIntent);*/
+
+                }
+            }
+        });
+        enquire_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent enquireIntent = new Intent(DetailsActivity.this, EnquireActivity.class);
+                startActivity(enquireIntent);
+                finish();
+            }
+        });
 
     }
 

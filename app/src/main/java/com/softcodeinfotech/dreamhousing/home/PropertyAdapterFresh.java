@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.bumptech.glide.Glide;
 import com.softcodeinfotech.dreamhousing.R;
 
@@ -60,7 +59,7 @@ public class PropertyAdapterFresh extends RecyclerView.Adapter<RecyclerView.View
             cardView=itemView.findViewById(R.id.cardView);
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams( mScrenwith - (mScrenwith/100*65), LinearLayout.LayoutParams.MATCH_PARENT);
-            params.setMargins(10,10,10,10);
+            params.setMargins(12, 10, 15, 10);
             cardView.setLayoutParams(params);
             cardView.setPadding(5,5,5,5);
 
