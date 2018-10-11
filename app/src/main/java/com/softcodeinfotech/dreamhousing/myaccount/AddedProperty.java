@@ -58,6 +58,7 @@ public class AddedProperty extends AppCompatActivity {
 
         accountDetailsAdapter = new AccountDetailsAdapter(this, mPAccountDetailsList, GetScreenWidth());
         recycler_accDetails.setAdapter(accountDetailsAdapter);
+        recycler_accDetails.setItemAnimator(new DefaultItemAnimator());
 
 
         getAccountItemDetails();
@@ -101,8 +102,8 @@ public class AddedProperty extends AppCompatActivity {
 
                                     String Url = response.body().getInformation().get(i).getPropertyImage();
 
-                                    Log.i("url",Url.substring(67));
-                                    Log.i("property_id",String.valueOf(response.body().getInformation().get(i).getPropertyId()));
+                                    //   Log.i("url",Url.substring(67));
+                                    //    Log.i("property_id",String.valueOf(response.body().getInformation().get(i).getPropertyId()));
                                 }
 
                                 accountDetailsAdapter.notifyDataSetChanged();

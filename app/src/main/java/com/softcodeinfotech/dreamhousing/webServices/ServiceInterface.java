@@ -126,12 +126,17 @@ public interface ServiceInterface {
     @Multipart
     @POST("property/myaccountdetails.php")
     Call<MyAccountItemsDetails> getAccountItems(
-            @Part("securecode")RequestBody securecode,
-            @Part("user_id") RequestBody user_id );
+            @Part("securecode") RequestBody securecode,
+            @Part("user_id") RequestBody user_id);
 
     //delete added  properties in user account
     @Multipart
     @POST("property/deleteproperties.php")
-    Call<DeleteProperties> deleteItems();
+    Call<DeleteProperties> deleteUserAddedItems(
+            @Part("securecode") RequestBody securecode,
+            @Part("property_id") RequestBody property_id,
+            @Part("path") RequestBody path
+    );
+
 
 }
