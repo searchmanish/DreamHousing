@@ -94,10 +94,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".myaccount.AddedProperty"
-            android:screenOrientation="portrait"
             android:parentActivityName=".home.HomeActivity"
-            />
-        <activity android:name=".search.FullListActivity"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".search.FullListActivity" />
+        <activity android:name=".EnquireActivity"></activity>
     </application>
 
 </manifest>

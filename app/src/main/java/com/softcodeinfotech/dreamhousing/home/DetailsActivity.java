@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.softcodeinfotech.dreamhousing.EnquireActivity;
 import com.softcodeinfotech.dreamhousing.R;
 import com.softcodeinfotech.dreamhousing.login.SigninActivity;
 import com.softcodeinfotech.dreamhousing.utility.Constant;
@@ -29,7 +30,7 @@ public class DetailsActivity extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     ImageView imageView;
 
-    TextView prop_details, prop_mrp, prop_location, call_agent;
+    TextView prop_details, prop_mrp, prop_location, call_agent, enquire_now;
 
     String userName;
     String userMobile;
@@ -92,7 +93,7 @@ public class DetailsActivity extends AppCompatActivity {
        // Toast.makeText(DetailsActivity.this, ""+details +""+mrp +""+address +""+phone, Toast.LENGTH_LONG).show();
 
 
-         imageView = findViewById(R.id.col_imageview);
+        imageView = findViewById(R.id.col_imageview);
         Glide.with(DetailsActivity.this)
                 .load(image_url)
                 .into(imageView);
@@ -194,6 +195,7 @@ public class DetailsActivity extends AppCompatActivity {
 
 // call agent button
         call_agent = findViewById(R.id.callagent);
+        enquire_now = findViewById(R.id.enquirenow);
 
       /*  if(userMobile.isEmpty())
         {
@@ -287,7 +289,14 @@ public class DetailsActivity extends AppCompatActivity {
                 }
             }
         });
-
+        enquire_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent enquireIntent = new Intent(DetailsActivity.this, EnquireActivity.class);
+                startActivity(enquireIntent);
+                finish();
+            }
+        });
 
     }
 
