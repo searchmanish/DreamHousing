@@ -2,7 +2,6 @@ package com.softcodeinfotech.dreamhousing.webServices;
 
 
 import com.softcodeinfotech.dreamhousing.beanResponse.AddProperty;
-import com.softcodeinfotech.dreamhousing.beanResponse.DeleteProperties;
 import com.softcodeinfotech.dreamhousing.beanResponse.ForgotPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.GetbannerModel;
 import com.softcodeinfotech.dreamhousing.beanResponse.MyAccountItemsDetails;
@@ -128,10 +127,5 @@ public interface ServiceInterface {
     Call<MyAccountItemsDetails> getAccountItems(
             @Part("securecode")RequestBody securecode,
             @Part("user_id") RequestBody user_id );
-
-    //delete added  properties in user account
-    @Multipart
-    @POST("property/deleteproperties.php")
-    Call<DeleteProperties> deleteItems();
 
 }
