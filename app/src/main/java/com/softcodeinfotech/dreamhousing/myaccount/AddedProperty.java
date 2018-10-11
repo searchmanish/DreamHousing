@@ -63,6 +63,8 @@ public class AddedProperty extends AppCompatActivity {
         accountDetailsAdapter = new AccountDetailsAdapter(this, mPAccountDetailsList, GetScreenWidth());
         recycler_accDetails.setAdapter(accountDetailsAdapter);
 
+        recycler_accDetails.setItemAnimator(new DefaultItemAnimator());
+
 
         getAccountItemDetails();
 

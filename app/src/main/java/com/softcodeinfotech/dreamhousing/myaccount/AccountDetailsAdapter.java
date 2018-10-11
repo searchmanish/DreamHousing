@@ -1,7 +1,9 @@
 package com.softcodeinfotech.dreamhousing.myaccount;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,14 +12,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.softcodeinfotech.dreamhousing.R;
+import com.softcodeinfotech.dreamhousing.home.DetailsActivity;
 
 
 import java.util.List;
 
 public class AccountDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    String imageUrl;
+    String path;
 
     private Context mContext;
     private List<AccountDetailsModel> mAccountDetailsList;
@@ -80,7 +87,7 @@ public class AccountDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ((AccountAdapterDetailsHolder) holder).accDetails_details.setText(model.getAcc_details());
         ((AccountAdapterDetailsHolder) holder).accDetails_address.setText(model.getAcc_address());
         ((AccountAdapterDetailsHolder) holder).accDetails_phone.setText(model.getAcc_phone());
-        ((AccountAdapterDetailsHolder) holder).accDetails_mrp.setText(String.valueOf(model.getAcc_mrp()));
+        ((AccountAdapterDetailsHolder) holder).accDetails_mrp.setText("₹ "+String.valueOf(model.getAcc_mrp()));
 
         Glide.with(mContext)
                 .load(model.getAcc_image())
@@ -88,12 +95,50 @@ public class AccountDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
 
+
+        ((AccountAdapterDetailsHolder)holder).accDetails_delete_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageUrl=model.getAcc_image();
+                 path =imageUrl.substring(67);
+                 final Integer prop_id = model.getAcc_id();
+               // Toast.makeText(mContext, "clicked"+imageUrl, Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alerDialog = new AlertDialog.Builder(mContext,R.style.CallAlertDialogStyle);
+                alerDialog.setIcon(R.drawable.ic_displayicon);
+                alerDialog.setTitle("Delete Item");
+                alerDialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(mContext, "Path of image  "+path, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Prop id  "+prop_id, Toast.LENGTH_SHORT).show();
+
+                        deleteSelectedProperty();
+                    }
+                });
+                alerDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                AlertDialog alertDialog = alerDialog.create();
+                alertDialog.show();
+            }
+        });
+
+
     }
+
 
     @Override
     public int getItemCount() {
 
         return mAccountDetailsList.size();
+    }
+
+
+    private void deleteSelectedProperty() {
+
     }
 
 }

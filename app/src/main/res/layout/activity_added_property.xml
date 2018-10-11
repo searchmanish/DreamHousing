@@ -26,7 +26,7 @@
         android:layout_marginLeft="@dimen/padding_medium_10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Propery Added By You"/>
+        android:text="Property Added By You"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/accDetailsRecyler"
