@@ -115,6 +115,9 @@ public class AccountDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             @Override
             public void onClick(View view) {
                 imageUrl=model.getAcc_image();
+                if(imageUrl.isEmpty()){
+                    imageUrl="http://ec2-13-232-109-36.ap-south-1.compute.amazonaws.com/property/uploads/0000000000.jpg";
+                }
                  path =imageUrl.substring(67);
                   prop_id = model.getAcc_id();
                   clickedPosition = position;
