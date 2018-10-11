@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.softcodeinfotech.dreamhousing.BuildConfig;
 import com.softcodeinfotech.dreamhousing.beanResponse.AddProperty;
+import com.softcodeinfotech.dreamhousing.beanResponse.DeleteProperties;
 import com.softcodeinfotech.dreamhousing.beanResponse.ForgotPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.GetbannerModel;
 import com.softcodeinfotech.dreamhousing.beanResponse.MyAccountItemsDetails;
@@ -140,6 +141,16 @@ public class ServiceWrapper {
     {
         return mServiceInterface.getAccountItems(convertPlainString(securecode),convertPlainString(user_id));
     }
+
+    //delete PropertiesFrom user account
+
+    public Call<DeleteProperties> deletePropertiesCall(String securecode,String property_id,String path)
+    {
+        return mServiceInterface.deleteUserAddedItems(convertPlainString(securecode),convertPlainString(property_id),
+                convertPlainString(path));
+    }
+
+
 
     // convert aa param into plain text
     public RequestBody convertPlainString(String data) {

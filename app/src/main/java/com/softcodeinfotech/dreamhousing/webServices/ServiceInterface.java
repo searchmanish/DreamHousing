@@ -132,6 +132,11 @@ public interface ServiceInterface {
     //delete added  properties in user account
     @Multipart
     @POST("property/deleteproperties.php")
-    Call<DeleteProperties> deleteItems();
+    Call<DeleteProperties> deleteUserAddedItems(
+            @Part("securecode")RequestBody securecode,
+            @Part("property_id")RequestBody property_id,
+            @Part ("path") RequestBody path
+    );
+
 
 }
