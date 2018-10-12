@@ -11,6 +11,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:elevation="@dimen/padding_small_5"
+        app:cardCornerRadius="@dimen/padding_medium_10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,8 +25,8 @@
 
             <ImageView
                 android:id="@+id/acc_image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:scaleType="centerCrop"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -47,6 +49,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
+                    android:paddingLeft="8dp"
+                    android:textSize="12sp"
+                    android:textColor="#ff2b2b2b"
                     android:maxLines="1"
                     android:text="Enter maxm price" />
 
@@ -58,6 +63,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
+                    android:paddingLeft="8dp"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey_800"
                     android:maxLines="1"
                     android:text="Enter property details" />
 
@@ -69,6 +78,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
+                    android:paddingLeft="8dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/grey_800"
                     android:maxLines="2"
                     android:text="Enter address" />
 
