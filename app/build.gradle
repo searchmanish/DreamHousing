@@ -71,6 +71,8 @@ dependencies {
     //app updater from playstore library
     implementation 'com.github.javiersantos:AppUpdater:2.7'
     implementation 'id.zelory:compressor:2.1.0'
+    //circle imageView for profile image
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
 }
 configurations.all {
