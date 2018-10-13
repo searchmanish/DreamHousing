@@ -6,8 +6,8 @@ android {
         applicationId "com.softcodeinfotech.dreamhousing"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 7
-        versionName "1.6"
+        versionCode 8
+        versionName "1.7"
         // Enabling multidex support.
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

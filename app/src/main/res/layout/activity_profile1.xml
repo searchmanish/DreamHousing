@@ -10,22 +10,24 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:background="@color/com_facebook_button_background_color_selected"
         android:layout_height="?attr/actionBarSize"
+        android:layout_marginBottom="8dp"
+        android:background="#82b1ff"
         android:theme="@style/MyToolbarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="383dp"
-        android:layout_height="147dp"
-        android:layout_marginBottom="45dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="47dp"
         android:elevation="@dimen/padding_small_5"
-        app:cardBackgroundColor="@color/com_facebook_button_background_color_selected"
-        app:layout_constraintBottom_toBottomOf="@+id/user_name"
+        app:cardBackgroundColor="#82b1ff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -43,17 +45,17 @@
     <TextView
         android:id="@+id/user_name"
         android:layout_width="0dp"
-        android:layout_height="29dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="70dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="225dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="serif"
         android:text="Name"
         android:textColor="@android:color/holo_blue_bright"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -79,75 +81,69 @@
     <TextView
         android:id="@+id/userName"
         android:layout_width="0dp"
-        android:layout_height="29dp"
-        android:layout_marginBottom="53dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="70dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
         android:text="Dream Housing"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@color/colorBottomNavigationInactive"
-        app:layout_constraintBottom_toTopOf="@+id/userEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
     <TextView
         android:id="@+id/user_email"
         android:layout_width="0dp"
-        android:layout_height="29dp"
-        android:layout_marginBottom="82dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="70dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="serif"
         android:text="Email"
         android:textColor="@android:color/holo_blue_bright"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/user_phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/user_name" />
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
     <TextView
         android:id="@+id/userEmail"
         android:layout_width="0dp"
-        android:layout_height="29dp"
-        android:layout_marginBottom="45dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="70dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
         android:text="dreamhousing@gmail.com"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@color/colorBottomNavigationInactive"
-        app:layout_constraintBottom_toBottomOf="@+id/user_phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/user_email" />
+        app:layout_constraintTop_toBottomOf="@+id/user_email" />
 
     <TextView
         android:id="@+id/user_phone"
         android:layout_width="0dp"
-        android:layout_height="29dp"
-        android:layout_marginBottom="149dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="70dp"
         android:layout_marginStart="70dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="serif"
         android:text="Mobile"
         android:textColor="@android:color/holo_blue_bright"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
 
     <TextView
         android:id="@+id/userPhone"
         android:layout_width="0dp"
-        android:layout_height="29dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="70dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="8dp"
@@ -159,8 +155,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_phone" />
-
-
 
 
 </android.support.constraint.ConstraintLayout>
