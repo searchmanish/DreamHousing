@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+    <permission
+        android:name="android.permission.CALL_PRIVILEGED"
+        android:protectionLevel="signature|privileged" />
+
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -100,7 +104,9 @@
             android:parentActivityName=".home.HomeActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".search.FullListActivity" />
-        <activity android:name=".EnquireActivity"></activity>
+        <activity android:name=".EnquireActivity" />
+        <activity android:name=".home.MultipleImageActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

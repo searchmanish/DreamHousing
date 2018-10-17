@@ -135,6 +135,13 @@ public class ServiceWrapper {
         return mServiceInterface.getbannerimagecall(convertPlainString(securcode) );
     }
 
+    //get multiple image
+
+    public Call<GetbannerModel> getMultipleImage(String securecode,String property_id)
+    {
+        return mServiceInterface.getImages(convertPlainString(securecode),convertPlainString(property_id));
+    }
+
     //get user AccountItemsDetails
 
     public  Call<MyAccountItemsDetails> getUserAccountItemsdetails(String securecode,String user_id)

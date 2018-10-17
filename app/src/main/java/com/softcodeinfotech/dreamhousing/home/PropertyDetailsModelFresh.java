@@ -15,15 +15,24 @@ public class PropertyDetailsModelFresh {
     property_category	int
 */
 
-   private String property_details,property_address,property_phone,property_image;
+   private String property_id,property_details,property_address,property_phone,property_image;
    private Double property_mrp;
 
-    public PropertyDetailsModelFresh(String property_details, String property_address, String property_phone, String property_image, Double property_mrp) {
+    public PropertyDetailsModelFresh(String property_id,String property_details, String property_address, String property_phone, String property_image, Double property_mrp) {
+        this.property_id = property_id;
         this.property_details = property_details;
         this.property_address = property_address;
         this.property_phone = property_phone;
         this.property_image = property_image;
         this.property_mrp = property_mrp;
+    }
+
+    public String getProperty_id() {
+        return property_id;
+    }
+
+    public void setProperty_id(String property_id) {
+        this.property_id = property_id;
     }
 
     public String getProperty_details() {

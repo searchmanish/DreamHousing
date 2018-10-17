@@ -76,28 +76,27 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 private AHBottomNavigation bottomNavigation;
     private ArrayList<AHBottomNavigationItem> bottomNavigationItems = new ArrayList<>();*/
 
-   // Drawer Layout
+    // Drawer Layout
     private DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     AVLoadingIndicatorView avi;
     private Toolbar mToolbar;
-    private String TAG ="HomeActivity";
+    private String TAG = "HomeActivity";
 
     //app updater from playstore library
     AppUpdaterUtils appUpdaterUtils;
 
     //TextView
-    TextView textView_fresh,textView_hotdeals,textView_owner,navName,navEmail;
-//bottom navigation
-BottomNavigationView navigation;
+    TextView textView_fresh, textView_hotdeals, textView_owner, navName, navEmail;
+    //bottom navigation
+    BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-      //app updater from playstore library
-
+        //app updater from playstore library
 
 
         appUpdaterUtils = new AppUpdaterUtils(this)
@@ -154,7 +153,7 @@ BottomNavigationView navigation;
 
         //
 
-        avi= findViewById(R.id.avi);
+        avi = findViewById(R.id.avi);
 
         //Force crashing by firebase
 
@@ -170,10 +169,10 @@ BottomNavigationView navigation;
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));*/
 
-    //
+        //
 
-        String sName= SharePreferenceUtils.getInstance().getString(Constant.USER_name);
-        String sEmail= SharePreferenceUtils.getInstance().getString(Constant.USER_email);
+        String sName = SharePreferenceUtils.getInstance().getString(Constant.USER_name);
+        String sEmail = SharePreferenceUtils.getInstance().getString(Constant.USER_email);
 
         //Bottom navigation
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -183,16 +182,16 @@ BottomNavigationView navigation;
         bannerSlider = (BannerSlider) findViewById(R.id.banner_slider1);
 
         // casting text view
-        textView_fresh =findViewById(R.id.textView_fresh);
+        textView_fresh = findViewById(R.id.textView_fresh);
         textView_owner = findViewById(R.id.textView_owner);
         textView_hotdeals = findViewById(R.id.textView_hotdeals);
 
         //navigationDrawer textView
 
-        NavigationView navView =findViewById(R.id.navigationView);
+        NavigationView navView = findViewById(R.id.navigationView);
         View headView = navView.getHeaderView(0);
         navName = headView.findViewById(R.id.navName);
-        navEmail =headView.findViewById(R.id.navEmail);
+        navEmail = headView.findViewById(R.id.navEmail);
         navName.setText(sName);
         navEmail.setText(sEmail);
 
@@ -205,29 +204,29 @@ BottomNavigationView navigation;
         // Toolbar
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle(" DreamHousing");
-       // mToolbar.setSubtitle("  by Abc ");
-         
+        // mToolbar.setSubtitle("  by Abc ");
+
         // //setUpNavigationDrawer menu
         @SuppressLint("CutPasteId")
         NavigationView navigationView = findViewById(R.id.navigationView);
-        mDrawerLayout=findViewById(R.id.drawerLayout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(HomeActivity.this,mDrawerLayout,mToolbar,
-                R.string.drawer_open,R.string.drawer_close);
+        mDrawerLayout = findViewById(R.id.drawerLayout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(HomeActivity.this, mDrawerLayout, mToolbar,
+                R.string.drawer_open, R.string.drawer_close);
         mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         //setUpNavigationDrawer();
 
-    // Bottom navigation
-      /*  bottomNavigation = findViewById(R.id.bottom_navigation);
-*/
+        // Bottom navigation
+        /*  bottomNavigation = findViewById(R.id.bottom_navigation);
+         */
         mToolbar.inflateMenu(R.menu.menu_main);
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
                 String title = (String) item.getTitle();
-               // Toast.makeText(HomeActivity.this, title + " Selected !", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(HomeActivity.this, title + " Selected !", Toast.LENGTH_SHORT).show();
 
                /* switch (item.getItemId()) {
 
@@ -264,7 +263,7 @@ BottomNavigationView navigation;
 
         // for propertyDetailsFresh
         recycler_Propertydetailsfresh = (RecyclerView) findViewById(R.id.recycler_Propertydetailsfresh);
-        LinearLayoutManager mLayoutManger3 = new LinearLayoutManager( this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager mLayoutManger3 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recycler_Propertydetailsfresh.setLayoutManager(mLayoutManger3);
         recycler_Propertydetailsfresh.setItemAnimator(new DefaultItemAnimator());
 
@@ -274,16 +273,16 @@ BottomNavigationView navigation;
 
         // for propertyDetailsOwner
         recycler_Propertydetailsowner = (RecyclerView) findViewById(R.id.recycler_Propertydetailsowner);
-        LinearLayoutManager mLayoutManger4 = new LinearLayoutManager( this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager mLayoutManger4 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recycler_Propertydetailsowner.setLayoutManager(mLayoutManger4);
         recycler_Propertydetailsowner.setItemAnimator(new DefaultItemAnimator());
 
         propertyAdapterOwner = new PropertyAdapterFresh(this, mPDetailsModelOwnerList, GetScreenWidth());
         recycler_Propertydetailsowner.setAdapter(propertyAdapterOwner);
 
-     // for propertyDetailsHot
+        // for propertyDetailsHot
         recycler_Propertydetailshot = (RecyclerView) findViewById(R.id.recycler_Propertydetailshotdeal);
-        LinearLayoutManager mLayoutManger5 = new LinearLayoutManager( this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager mLayoutManger5 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recycler_Propertydetailshot.setLayoutManager(mLayoutManger5);
         recycler_Propertydetailshot.setItemAnimator(new DefaultItemAnimator());
 
@@ -296,7 +295,6 @@ BottomNavigationView navigation;
         propertySellRes();
         propertyOwnerRes();
         propertyHotRes();
-
 
 
         //
@@ -325,11 +323,11 @@ BottomNavigationView navigation;
 
 
     //To get ScreenWidth
-    public int GetScreenWidth(){
-        int  width=100;
+    public int GetScreenWidth() {
+        int width = 100;
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        WindowManager windowManager =  (WindowManager) getApplicationContext().getSystemService(WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
         width = displayMetrics.widthPixels;
 
@@ -341,28 +339,28 @@ BottomNavigationView navigation;
     private void propertySellRes() {
         //avi.show();
         avi.smoothToShow();
-        if (!NetworkUtility.isNetworkConnected(HomeActivity.this)){
-            AppUtilits.displayMessage(HomeActivity.this,  getString(R.string.network_not_connected));
+        if (!NetworkUtility.isNetworkConnected(HomeActivity.this)) {
+            AppUtilits.displayMessage(HomeActivity.this, getString(R.string.network_not_connected));
 
-        }else {
+        } else {
             ServiceWrapper service = new ServiceWrapper(null);
             Call<PropertyDetails> call = service.PorductDetailsFreshRes("1234");
             call.enqueue(new Callback<PropertyDetails>() {
                 @Override
                 public void onResponse(Call<PropertyDetails> call, Response<PropertyDetails> response) {
-                    Log.e(TAG, " response is "+ response.body().getInformation().toString());
-                    if (response.body()!= null && response.isSuccessful()){
-                        if (response.body().getStatus() ==1){
+                    Log.e(TAG, " response is " + response.body().getInformation().toString());
+                    if (response.body() != null && response.isSuccessful()) {
+                        if (response.body().getStatus() == 1) {
                             // avi.hide();
                             avi.smoothToHide();
                             enabledTitleTextViews();
-                            if (response.body().getInformation().size()>0){
+                            if (response.body().getInformation().size() > 0) {
 
                                 mPDetailsModelFreshList.clear();
-                                for (int i=0; i< response.body().getInformation().size(); i++){
+                                for (int i = 0; i < response.body().getInformation().size(); i++) {
 
-                                    mPDetailsModelFreshList.add(new PropertyDetailsModelFresh(response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
-                                            response.body().getInformation().get(i).getPropertyPhone(),response.body().getInformation().get(i).getPropertyImage(),
+                                    mPDetailsModelFreshList.add(new PropertyDetailsModelFresh(String.valueOf(response.body().getInformation().get(i).getPropertyId()),response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
+                                            response.body().getInformation().get(i).getPropertyPhone(), response.body().getInformation().get(i).getPropertyImage(),
                                             response.body().getInformation().get(i).getPropertyMrp()));
                                    /* mPDetailsModelFreshList.add(new PropertyDetailsModelFresh(response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
                                             response.body().getInformation().get(i).getPropertyMrp(), response.body().getInformation().get(i).getPropertyPhone(),response.body().getInformation().get(i).getPropertyImage()
@@ -373,13 +371,13 @@ BottomNavigationView navigation;
                                 propertyAdapterFresh.notifyDataSetChanged();
                             }
 
-                        }else {
+                        } else {
                             // avi.hide();
                             avi.smoothToHide();
-                            Log.e(TAG, "failed to get rnew prod "+ response.body().getMsg());
+                            Log.e(TAG, "failed to get rnew prod " + response.body().getMsg());
                             // AppUtilits.displayMessage(HomeActivity.this,  response.body().getMsg());
                         }
-                    }else {
+                    } else {
                         // AppUtilits.displayMessage(HomeActivity.this,  getString(R.string.failed_request));
                         // avi.hide();
                         avi.smoothToHide();
@@ -389,7 +387,7 @@ BottomNavigationView navigation;
 
                 @Override
                 public void onFailure(Call<PropertyDetails> call, Throwable t) {
-                    Log.e(TAG, "fail new prod "+ t.toString());
+                    Log.e(TAG, "fail new prod " + t.toString());
                     // avi.hide();
                     avi.smoothToHide();
                 }
@@ -401,28 +399,28 @@ BottomNavigationView navigation;
 
     private void propertyOwnerRes() {
         avi.smoothToShow();
-        if (!NetworkUtility.isNetworkConnected(HomeActivity.this)){
-            AppUtilits.displayMessage(HomeActivity.this,  getString(R.string.network_not_connected));
+        if (!NetworkUtility.isNetworkConnected(HomeActivity.this)) {
+            AppUtilits.displayMessage(HomeActivity.this, getString(R.string.network_not_connected));
 
-        }else {
+        } else {
             ServiceWrapper service = new ServiceWrapper(null);
             Call<PropertyDetailsOwner> call = service.PorductDetailsOwner("1234");
             call.enqueue(new Callback<PropertyDetailsOwner>() {
                 @Override
                 public void onResponse(Call<PropertyDetailsOwner> call, Response<PropertyDetailsOwner> response) {
-                    Log.e(TAG, " response is "+ response.body().getInformation().toString());
-                    if (response.body()!= null && response.isSuccessful()){
-                        if (response.body().getStatus() ==1){
+                    Log.e(TAG, " response is " + response.body().getInformation().toString());
+                    if (response.body() != null && response.isSuccessful()) {
+                        if (response.body().getStatus() == 1) {
                             // avi.hide();
                             avi.smoothToHide();
                             enabledTitleTextViews();
-                            if (response.body().getInformation().size()>0){
+                            if (response.body().getInformation().size() > 0) {
 
                                 mPDetailsModelOwnerList.clear();
-                                for (int i=0; i< response.body().getInformation().size(); i++){
+                                for (int i = 0; i < response.body().getInformation().size(); i++) {
 
-                                    mPDetailsModelOwnerList.add(new PropertyDetailsModelFresh(response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
-                                            response.body().getInformation().get(i).getPropertyPhone(),response.body().getInformation().get(i).getPropertyImage(),
+                                    mPDetailsModelOwnerList.add(new PropertyDetailsModelFresh(String.valueOf(response.body().getInformation().get(i).getPropertyId()),response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
+                                            response.body().getInformation().get(i).getPropertyPhone(), response.body().getInformation().get(i).getPropertyImage(),
                                             response.body().getInformation().get(i).getPropertyMrp()));
                                    /* mPDetailsModelFreshList.add(new PropertyDetailsModelFresh(response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
                                             response.body().getInformation().get(i).getPropertyMrp(), response.body().getInformation().get(i).getPropertyPhone(),response.body().getInformation().get(i).getPropertyImage()
@@ -433,13 +431,13 @@ BottomNavigationView navigation;
                                 propertyAdapterOwner.notifyDataSetChanged();
                             }
 
-                        }else {
+                        } else {
                             // avi.hide();
                             avi.smoothToHide();
-                            Log.e(TAG, "failed to get rnew prod "+ response.body().getMsg());
+                            Log.e(TAG, "failed to get rnew prod " + response.body().getMsg());
                             // AppUtilits.displayMessage(HomeActivity.this,  response.body().getMsg());
                         }
-                    }else {
+                    } else {
                         // avi.hide();
                         avi.smoothToHide();
                         // AppUtilits.displayMessage(HomeActivity.this,  getString(R.string.failed_request));
@@ -450,7 +448,7 @@ BottomNavigationView navigation;
 
                 @Override
                 public void onFailure(Call<PropertyDetailsOwner> call, Throwable t) {
-                    Log.e(TAG, "fail new prod "+ t.toString());
+                    Log.e(TAG, "fail new prod " + t.toString());
                     // avi.hide();
                     avi.smoothToHide();
                 }
@@ -463,28 +461,28 @@ BottomNavigationView navigation;
 
     private void propertyHotRes() {
         avi.smoothToShow();
-        if (!NetworkUtility.isNetworkConnected(HomeActivity.this)){
-            AppUtilits.displayMessage(HomeActivity.this,  getString(R.string.network_not_connected));
+        if (!NetworkUtility.isNetworkConnected(HomeActivity.this)) {
+            AppUtilits.displayMessage(HomeActivity.this, getString(R.string.network_not_connected));
 
-        }else {
+        } else {
             ServiceWrapper service = new ServiceWrapper(null);
             Call<PropertyDetailsHot> call = service.PorductDetailsHot("1234");
             call.enqueue(new Callback<PropertyDetailsHot>() {
                 @Override
                 public void onResponse(Call<PropertyDetailsHot> call, Response<PropertyDetailsHot> response) {
-                    Log.e(TAG, " response is "+ response.body().getInformation().toString());
-                    if (response.body()!= null && response.isSuccessful()){
-                        if (response.body().getStatus() ==1){
+                    Log.e(TAG, " response is " + response.body().getInformation().toString());
+                    if (response.body() != null && response.isSuccessful()) {
+                        if (response.body().getStatus() == 1) {
                             // avi.hide();
                             avi.smoothToHide();
                             enabledTitleTextViews();
-                            if (response.body().getInformation().size()>0){
+                            if (response.body().getInformation().size() > 0) {
 
                                 mPDetailsModelHotList.clear();
-                                for (int i=0; i< response.body().getInformation().size(); i++){
+                                for (int i = 0; i < response.body().getInformation().size(); i++) {
 
-                                    mPDetailsModelHotList.add(new PropertyDetailsModelFresh(response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
-                                            response.body().getInformation().get(i).getPropertyPhone(),response.body().getInformation().get(i).getPropertyImage(),
+                                    mPDetailsModelHotList.add(new PropertyDetailsModelFresh(String.valueOf(response.body().getInformation().get(i).getPropertyId()),response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
+                                            response.body().getInformation().get(i).getPropertyPhone(), response.body().getInformation().get(i).getPropertyImage(),
                                             response.body().getInformation().get(i).getPropertyMrp()));
                                    /* mPDetailsModelFreshList.add(new PropertyDetailsModelFresh(response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
                                             response.body().getInformation().get(i).getPropertyMrp(), response.body().getInformation().get(i).getPropertyPhone(),response.body().getInformation().get(i).getPropertyImage()
@@ -495,13 +493,13 @@ BottomNavigationView navigation;
                                 propertyAdapterHot.notifyDataSetChanged();
                             }
 
-                        }else {
+                        } else {
                             // avi.hide();
                             avi.smoothToHide();
-                            Log.e(TAG, "failed to get rnew prod "+ response.body().getMsg());
+                            Log.e(TAG, "failed to get rnew prod " + response.body().getMsg());
                             // AppUtilits.displayMessage(HomeActivity.this,  response.body().getMsg());
                         }
-                    }else {
+                    } else {
                         // avi.hide();
                         avi.smoothToHide();
                         // AppUtilits.displayMessage(HomeActivity.this,  getString(R.string.failed_request));
@@ -512,7 +510,7 @@ BottomNavigationView navigation;
 
                 @Override
                 public void onFailure(Call<PropertyDetailsHot> call, Throwable t) {
-                    Log.e(TAG, "fail new prod "+ t.toString());
+                    Log.e(TAG, "fail new prod " + t.toString());
                     // avi.hide();
                     avi.smoothToHide();
                 }
@@ -526,10 +524,9 @@ BottomNavigationView navigation;
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         String itemName = (String) item.getTitle();
-       // Toast.makeText(HomeActivity.this, ""+itemName, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(HomeActivity.this, ""+itemName, Toast.LENGTH_SHORT).show();
         closeDrawer();
-        switch ( item.getItemId())
-        {
+        switch (item.getItemId()) {
            /* case R.id.save:
                 break;*/
             case R.id.profile:
@@ -551,6 +548,7 @@ BottomNavigationView navigation;
     private void closeDrawer() {
         mDrawerLayout.closeDrawer(GravityCompat.START);
     }
+
     // Open the Drawer
     private void showDrawer() {
         mDrawerLayout.openDrawer(GravityCompat.START);
@@ -564,7 +562,7 @@ BottomNavigationView navigation;
             super.onBackPressed();
     }
 
-    public void enabledTitleTextViews(){
+    public void enabledTitleTextViews() {
         textView_hotdeals.setVisibility(View.VISIBLE);
         textView_owner.setVisibility(View.VISIBLE);
         textView_fresh.setVisibility(View.VISIBLE);
@@ -580,10 +578,10 @@ BottomNavigationView navigation;
             //  Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                   // Toast.makeText(HomeActivity.this, "Clicked on Home", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(HomeActivity.this, "Clicked on Home", Toast.LENGTH_SHORT).show();
 
                     //
-                    Intent homeIntent = new Intent(HomeActivity.this,HomeActivity.class);
+                    Intent homeIntent = new Intent(HomeActivity.this, HomeActivity.class);
                     startActivity(homeIntent);
                     return true;
               /*  case R.id.navigation_profile:
@@ -601,9 +599,9 @@ BottomNavigationView navigation;
                     return true;
 
                 case R.id.addProperty:
-                   // Toast.makeText(HomeActivity.this, "Clicked on Share", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(HomeActivity.this, "Clicked on Share", Toast.LENGTH_SHORT).show();
                     //toolbar.setTitle("Share");
-                    Intent settingsIntent = new Intent(HomeActivity.this,SettingsActivity.class);
+                    Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
                     startActivity(settingsIntent);
                     return true;
 

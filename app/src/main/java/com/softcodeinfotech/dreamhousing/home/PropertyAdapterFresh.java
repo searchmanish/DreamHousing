@@ -100,6 +100,7 @@ public class PropertyAdapterFresh extends RecyclerView.Adapter<RecyclerView.View
                 intent.putExtra("property_details",model.getProperty_details());
                 intent.putExtra("property_mrp", String.valueOf(model.getProperty_mrp()));
                 intent.putExtra("property_address",model.getProperty_address());
+                intent.putExtra("property_id",model.getProperty_id());
                 mContext.startActivity(intent);
 
             }

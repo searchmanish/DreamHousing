@@ -122,6 +122,14 @@ public interface ServiceInterface {
             @Part("securecode") RequestBody securecode
     );
 
+    //get multiple images
+    @Multipart
+    @POST("property/get_multiple_image.php")
+    Call<GetbannerModel> getImages(
+            @Part("securecode") RequestBody securecode,
+            @Part("property_id") RequestBody property_id
+    );
+
     //get AccountItemDetails
     @Multipart
     @POST("property/myaccountdetails.php")

@@ -1,6 +1,7 @@
 package com.softcodeinfotech.dreamhousing.settings;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -28,6 +29,9 @@ RelativeLayout rootlayout;
     FloatingActionButton floatingActionButton;
     String userName;
     String userMobile;
+
+
+    Toolbar toolbar;
     //
     //checkbox
     private CheckBox mSell, mPurchase,mRent;
@@ -37,11 +41,29 @@ RelativeLayout rootlayout;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Settings");
         setSupportActionBar(toolbar);
         //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_previous);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+
+        //back button
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("Choose Action");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(R.drawable.back_button);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // b.mylist.remove(b.mylist.size() - 1);
+
+                finish();
+
+            }
+        });
+
         rootlayout= findViewById(R.id.rootlayout);
         buyerView = findViewById(R.id.buyer);
         sellerView = findViewById(R.id.seller);

@@ -12,6 +12,7 @@ import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.softcodeinfotech.dreamhousing.R;
 import com.softcodeinfotech.dreamhousing.home.HomeActivity;
+import com.softcodeinfotech.dreamhousing.utility.Constant;
+import com.softcodeinfotech.dreamhousing.utility.SharePreferenceUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,15 +38,19 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ImageActivity extends AppCompatActivity {
-   ImageView imageView;
-   String property_id;
-   Button uploadButton,continueButton;
+    ImageView imageView;
+    String property_id, user_id;
+    Button uploadButton, continueButton, multipleImageUpload;
+    int count = 1;
     File compressedImageFile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
 
+        user_id = SharePreferenceUtils.getInstance().getString(Constant.USER_id);
+        Log.e("user_id", user_id);
         //checking the permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -55,16 +62,26 @@ public class ImageActivity extends AppCompatActivity {
             return;
         }
         final Intent intent = getIntent();
-         property_id = intent.getExtras().getString("property_id");
+        property_id = intent.getExtras().getString("property_id");
         imageView = findViewById(R.id.imageView);
         //adding click listener to button
-        uploadButton =findViewById(R.id.uploadButton);
-        continueButton =findViewById(R.id.continueButton);
-        continueButton.setEnabled(false);
+        uploadButton = findViewById(R.id.uploadButton);
+        continueButton = findViewById(R.id.continueButton);
+        multipleImageUpload = findViewById(R.id.multipleImage);
+        multipleImageUpload.setVisibility(View.GONE);
+        continueButton.setVisibility(View.GONE);
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //opening file chooser
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, 100);
+            }
+        });
+
+        multipleImageUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 100);
             }
@@ -84,16 +101,20 @@ public class ImageActivity extends AppCompatActivity {
             uploadFile(selectedImage, "My Image");*/
         }
     }
-    public void setImage(Uri selectedImage)
-    {
+
+    public void setImage(Uri selectedImage) {
         imageView.setImageURI(selectedImage);
         //calling the upload file method after choosing the file
 
-        uploadButton.setEnabled(false);
+        uploadButton.setVisibility(View.GONE);
 
         // property_id = "20";
+        if (count == 1) {
+            uploadFile(selectedImage, "abcd", property_id);
+        } else {
+            uploadMultipleFile(selectedImage, "abcd", property_id, user_id);
+        }
 
-        uploadFile(selectedImage,"abcd",property_id);
     }
 
 
@@ -103,12 +124,12 @@ public class ImageActivity extends AppCompatActivity {
         //creating a file
         File file = new File(getRealPathFromURI(fileUri));
         try {
-             compressedImageFile = new Compressor(this).compressToFile(file);
+            compressedImageFile = new Compressor(this).compressToFile(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
         //creating request body for file
-        RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)),compressedImageFile );
+        RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedImageFile);
         RequestBody descBody = RequestBody.create(MediaType.parse("text/plain"), desc);
         RequestBody prop_id = RequestBody.create(MediaType.parse("text/plain"), p_id);
 
@@ -128,7 +149,7 @@ public class ImageActivity extends AppCompatActivity {
         Api api = retrofit.create(Api.class);
 
         //creating a call and calling the upload image method
-        Call<ImageResponse> call = api.uploadImage(requestFile, descBody,prop_id);
+        Call<ImageResponse> call = api.uploadImage(requestFile, descBody, prop_id);
 
         //finally performing the call
         call.enqueue(new Callback<ImageResponse>() {
@@ -136,8 +157,9 @@ public class ImageActivity extends AppCompatActivity {
             public void onResponse(Call<ImageResponse> call, Response<ImageResponse> response) {
                 if (!response.body().error) {
                     Toast.makeText(ImageActivity.this, "Image Uploaded Successfully...", Toast.LENGTH_LONG).show();
-
-                    continueButton.setEnabled(true);
+                    count = count + 1;
+                    multipleImageUpload.setVisibility(View.VISIBLE);
+                    continueButton.setVisibility(View.VISIBLE);
                     continueButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -158,6 +180,71 @@ public class ImageActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void uploadMultipleFile(Uri fileUri, String desc, String p_id, String user_id) {
+
+        //creating a file
+        File file = new File(getRealPathFromURI(fileUri));
+        try {
+            compressedImageFile = new Compressor(this).compressToFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //creating request body for file
+        RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedImageFile);
+        RequestBody descBody = RequestBody.create(MediaType.parse("text/plain"), desc);
+        RequestBody prop_id = RequestBody.create(MediaType.parse("text/plain"), p_id);
+        RequestBody u_id = RequestBody.create(MediaType.parse("text/plain"), user_id);
+
+        //The gson builder
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+
+        //creating retrofit object
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        //creating our api
+        Api api = retrofit.create(Api.class);
+
+        //creating a call and calling the upload image method
+        Call<ImageResponse> call = api.uploadMultipleImage(requestFile, descBody, prop_id, u_id);
+
+        //finally performing the call
+        call.enqueue(new Callback<ImageResponse>() {
+            @Override
+            public void onResponse(Call<ImageResponse> call, Response<ImageResponse> response) {
+                if (!response.body().error) {
+                    Toast.makeText(ImageActivity.this, "Image Uploaded Successfully...", Toast.LENGTH_LONG).show();
+                    count = count + 1;
+                    continueButton.setEnabled(true);
+                    continueButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent homeIntent = new Intent(ImageActivity.this, HomeActivity.class);
+                            startActivity(homeIntent);
+                            finish();
+                        }
+                    });
+
+                } else {
+                    Toast.makeText(ImageActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ImageResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+
 
     /*
      * This method is fetching the absolute path of the image file

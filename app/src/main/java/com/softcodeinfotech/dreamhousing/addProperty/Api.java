@@ -26,4 +26,12 @@ public interface Api {
      @Part("name") RequestBody desc,
      @Part("property_id") RequestBody prop_id);
 
+    @Multipart
+    @POST("multipleImage.php")
+    Call<ImageResponse> uploadMultipleImage
+            (@Part("image\"; filename=\"myfile.jpg\" ") RequestBody file,
+             @Part("name") RequestBody desc,
+             @Part("property_id") RequestBody prop_id,
+            @Part ("user_id") RequestBody u_id);
+
 }
