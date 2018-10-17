@@ -23,4 +23,12 @@ public class Constant {
 
     public static final String CART_ITEM_COUNT =" CART_ITEM_COUNT";
 
+    // for animation
+    public static final String KEY_ANIM_TYPE = "anim_type";
+    public static final String KEY_TITLE    = "anim_title";
+
+    public enum TransitionType {
+        ExplodeJava, ExplodeXML, SlideJava, SlideXML, FadeJava, FadeXML
+    }
+
 }

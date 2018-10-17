@@ -45,6 +45,8 @@ public class MultipleImageAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             multipleImageView = itemView.findViewById(R.id.multi_image);
             cardView = itemView.findViewById(R.id.mCard_view);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, mScreenheight - (mScreenheight / 100 * 25));
+            cardView.setLayoutParams(params);
      /*       if(mPMultipleImageModelList.size()==1) {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 cardView.setLayoutParams(params);
@@ -72,17 +74,6 @@ public class MultipleImageAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MultipleImageModel model = mPMultipleImageModelList.get(position);
-        if(mPMultipleImageModelList.size()==1) {
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            cardView.setLayoutParams(params);
-
-        }
-        else
-        {
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, mScreenheight - (mScreenheight / 100 * 25));
-            cardView.setLayoutParams(params);
-        }
 
         Glide.with(mContext).load(model.getImageUrl())
                 .into(((MultipleImageHolder)holder).multipleImageView);

@@ -1,12 +1,15 @@
 package com.softcodeinfotech.dreamhousing.home;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -15,8 +18,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -74,16 +80,21 @@ public class DetailsActivity extends AppCompatActivity {
 
     CoordinatorLayout rootlayout;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         rootlayout = findViewById(R.id.main_content);
 
+
+        // For overlap of Re Entering Activity - MainActivity.java and Exiting TransitionActivity.java
+        getWindow().setAllowReturnTransitionOverlap(false);
      /*   //Banner slider
         bannerSlider = (BannerSlider) findViewById(R.id.image_slider);
 */
         setUpWidget();
+        setupWindowAnimations();
 
         //back button
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -168,11 +179,13 @@ public class DetailsActivity extends AppCompatActivity {
        floatingActionButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
+               ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailsActivity.this);
                Intent multiImageIntent = new Intent(DetailsActivity.this,MultipleImageActivity.class);
                multiImageIntent.putExtra("Property_id",property_id);
                multiImageIntent.putExtra("url",image_url);
+               multiImageIntent.putExtra(Constant.KEY_ANIM_TYPE, Constant.TransitionType.SlideXML);
               // multiImageIntent.putExtra("user_id",user_id);
-               startActivity(multiImageIntent);
+               startActivity(multiImageIntent,options.toBundle());
 
            }
        });
@@ -346,6 +359,21 @@ public class DetailsActivity extends AppCompatActivity {
         prop_mrp = findViewById(R.id.prop_mrp);
         prop_location = findViewById(R.id.prop_location);
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void setupWindowAnimations() {
+
+        // Re-enter transition is executed when returning back to this activity
+        Slide slideTransition = new Slide();
+        slideTransition.setSlideEdge(Gravity.BOTTOM); // Use START if using right - to - left locale
+        slideTransition.setDuration(500);
+
+      //  getWindow().setReenterTransition(slideTransition);  // When MainActivity Re-enter the Screen
+        //getWindow().setExitTransition(slideTransition);     // When MainActivity Exits the Screen
+
+        // For overlap of Re Entering Activity - MainActivity.java and Exiting TransitionActivity.java
+        getWindow().setAllowReturnTransitionOverlap(false);
     }
 }
 

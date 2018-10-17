@@ -2,12 +2,16 @@ package com.softcodeinfotech.dreamhousing.home;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -34,14 +38,24 @@ public class MultipleImageActivity extends AppCompatActivity {
     String property_id,user_id,url;
     Toolbar  toolbar;
 
+    Constant.TransitionType type;
+
     private RecyclerView recycler_multipleImage;
     private ArrayList<MultipleImageModel> mPMultipleImageModelList = new ArrayList<MultipleImageModel>();
     private MultipleImageAdapter multipleImageAdapter;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiple_image);
+
+        initPage();
+
+        initAnimation();
+
+        // For overlap between Exiting  MainActivity.java and Entering TransitionActivity.java
+        getWindow().setAllowEnterTransitionOverlap(false);
 
 
         //back button
@@ -165,4 +179,36 @@ public class MultipleImageActivity extends AppCompatActivity {
        return height;
 
    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public boolean onSupportNavigateUp() {
+        finishAfterTransition();
+        return true;
+    }
+
+    private void initPage() {
+
+        type = (Constant.TransitionType) getIntent().getSerializableExtra(Constant.KEY_ANIM_TYPE);
+       // toolbarTitle = getIntent().getExtras().getString(Constant.KEY_TITLE);
+
+
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void initAnimation() {
+
+        switch (type)
+        {
+            case SlideXML: { // For Slide by XML
+                Transition enterTansition = TransitionInflater.from(this).inflateTransition(R.transition.slide);
+                getWindow().setEnterTransition(enterTansition);
+                break;
+            }
+        }
+
+
+    }
 }
