@@ -73,9 +73,6 @@
             android:name=".login.New_Password"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".search.SearchActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".addProperty.ImageActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -103,10 +100,13 @@
             android:name=".myaccount.AddedProperty"
             android:parentActivityName=".home.HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".search.FullListActivity" />
         <activity android:name=".EnquireActivity" />
-        <activity android:name=".home.MultipleImageActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".home.MultipleImageActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".search.SearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

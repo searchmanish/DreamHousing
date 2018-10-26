@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.softcodeinfotech.dreamhousing.R;
 
 import java.util.List;
@@ -83,10 +84,8 @@ public class PropertyAdapterFresh extends RecyclerView.Adapter<RecyclerView.View
         ((PropertyAdapterFreshHolder) holder).property_mrp.setText("₹ "+ String.valueOf(model.getProperty_mrp()));
 
         Glide.with(mContext)
-                .load(model.getProperty_image())
+                .load(model.getProperty_image()).apply(new RequestOptions().placeholder(R.drawable.placeholder2).error(R.drawable.placeholder2))
                 .into(((PropertyAdapterFreshHolder) holder).property_image);
-
-
 
 
 

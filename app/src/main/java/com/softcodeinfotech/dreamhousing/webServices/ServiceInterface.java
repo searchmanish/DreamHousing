@@ -5,15 +5,18 @@ import com.softcodeinfotech.dreamhousing.beanResponse.AddProperty;
 import com.softcodeinfotech.dreamhousing.beanResponse.DeleteProperties;
 import com.softcodeinfotech.dreamhousing.beanResponse.ForgotPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.GetbannerModel;
+import com.softcodeinfotech.dreamhousing.beanResponse.LocationResponse;
 import com.softcodeinfotech.dreamhousing.beanResponse.MyAccountItemsDetails;
 import com.softcodeinfotech.dreamhousing.beanResponse.NewPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.NewUserRegistration;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetails;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetailsHot;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetailsOwner;
+import com.softcodeinfotech.dreamhousing.beanResponse.PropertyResponseByLocation;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertySell;
 import com.softcodeinfotech.dreamhousing.beanResponse.Registration;
 import com.softcodeinfotech.dreamhousing.beanResponse.userSignin;
+import com.softcodeinfotech.dreamhousing.search.LocationModel;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -146,5 +149,21 @@ public interface ServiceInterface {
             @Part("path") RequestBody path
     );
 
+   //get location from server for search
+    @Multipart
+    @POST("property/get_location.php")
+    Call<LocationResponse> getLocation(
+            @Part("securecode") RequestBody securecode
+    );
+
+
+ // get property response from server using location search
+
+    @Multipart
+    @POST("property/get_property_bylocation.php")
+    Call<PropertyResponseByLocation> getPropertyByLocation(
+            @Part("securecode")RequestBody securecode,
+            @Part("location")RequestBody location,
+            @Part("property_type")RequestBody property_type);
 
 }

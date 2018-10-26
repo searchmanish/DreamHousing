@@ -68,8 +68,9 @@ public class MultipleImageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // b.mylist.remove(b.mylist.size() - 1);
+                finishAfterTransition();
 
-                finish();
+                //finish();
 
             }
         });
@@ -79,7 +80,7 @@ public class MultipleImageActivity extends AppCompatActivity {
         recycler_multipleImage = (RecyclerView) findViewById(R.id.rec_multiple_image);
         LinearLayoutManager mLayoutManger = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recycler_multipleImage.setLayoutManager(mLayoutManger);
-        recycler_multipleImage.setItemAnimator(new DefaultItemAnimator());
+       // recycler_multipleImage.setItemAnimator(new DefaultItemAnimator());
 
         multipleImageAdapter = new MultipleImageAdapter(this, mPMultipleImageModelList,GetScreenHeight());
         recycler_multipleImage.setAdapter(multipleImageAdapter);

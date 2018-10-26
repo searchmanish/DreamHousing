@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".search.SearchActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        />
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetEnd="20dp"
+        app:contentInsetStart="20dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <ImageView
+            android:id="@+id/imageSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|end"
+            android:adjustViewBounds="true"
+            android:src="@drawable/search"
+            />
+        <AutoCompleteTextView
+        android:id="@+id/autoCompleteSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+            android:textColor="#ffff"
+            android:paddingEnd="@dimen/padding_medium_10dp"
+            android:background="@color/colorPrimaryDark"
+            android:hint="Enter Location"
+            android:visibility="gone"
+            android:drawableEnd="@drawable/search"
+            android:layout_below="@+id/toolbar"/>
+    </android.support.v7.widget.Toolbar>
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/toolbar"
+            android:id="@+id/accDetailsRecyler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_small_5"
+            android:paddingTop="@dimen/padding_medium_10dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+
+</RelativeLayout>

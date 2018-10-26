@@ -58,16 +58,30 @@
                     android:layout_marginTop="@dimen/padding_medium_10dp"
                     android:orientation="vertical">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/textView_fresh"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/padding_medium_10dp"
-                        android:paddingBottom="@dimen/padding_small_5"
-                        android:paddingTop="@dimen/padding_small_5"
+                       android:layout_alignParentLeft="true"
                         android:text="@string/sell"
+                        android:layout_marginLeft="@dimen/padding_medium_10dp"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/textView_fresh_sell_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="See All>"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_alignParentRight="true"
+                            />
+
+                    </RelativeLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_Propertydetailsfresh"
@@ -88,16 +102,31 @@
                     android:layout_marginTop="@dimen/padding_medium_10dp"
                     android:orientation="vertical">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView_owner"
                         android:layout_marginLeft="@dimen/padding_medium_10dp"
-                        android:paddingBottom="@dimen/padding_small_5"
-                        android:paddingTop="@dimen/padding_small_5"
+                        android:layout_alignParentLeft="true"
                         android:text="@string/purchase"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView_owner_sell_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="See All>"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_alignParentRight="true"
+                            />
+
+                    </RelativeLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_Propertydetailsowner"
@@ -117,16 +146,29 @@
                     android:layout_marginTop="@dimen/padding_medium_10dp"
                     android:orientation="vertical">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView_hotdeals"
                         android:layout_marginLeft="@dimen/padding_medium_10dp"
-                        android:paddingBottom="@dimen/padding_small_5"
-                        android:paddingTop="@dimen/padding_small_5"
                         android:text="@string/rent"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/textView_hotdeals_sell_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="See All>"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_alignParentRight="true"
+                            />
+
+                    </RelativeLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_Propertydetailshotdeal"

@@ -50,7 +50,7 @@ public class AddedProperty extends AppCompatActivity {
         user_id = SharePreferenceUtils.getInstance().getString(Constant.USER_id);
         Log.v(TAG, user_id + user_id);
 
-        // for propertyDetailsFresh
+        // for propertyDetails
         recycler_accDetails = (RecyclerView) findViewById(R.id.accDetailsRecyler);
         LinearLayoutManager mLayoutManger = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recycler_accDetails.setLayoutManager(mLayoutManger);

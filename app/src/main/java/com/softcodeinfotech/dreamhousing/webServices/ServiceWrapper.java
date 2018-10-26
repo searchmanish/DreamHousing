@@ -8,12 +8,14 @@ import com.softcodeinfotech.dreamhousing.beanResponse.AddProperty;
 import com.softcodeinfotech.dreamhousing.beanResponse.DeleteProperties;
 import com.softcodeinfotech.dreamhousing.beanResponse.ForgotPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.GetbannerModel;
+import com.softcodeinfotech.dreamhousing.beanResponse.LocationResponse;
 import com.softcodeinfotech.dreamhousing.beanResponse.MyAccountItemsDetails;
 import com.softcodeinfotech.dreamhousing.beanResponse.NewPassword;
 import com.softcodeinfotech.dreamhousing.beanResponse.NewUserRegistration;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetails;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetailsHot;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetailsOwner;
+import com.softcodeinfotech.dreamhousing.beanResponse.PropertyResponseByLocation;
 import com.softcodeinfotech.dreamhousing.beanResponse.PropertySell;
 import com.softcodeinfotech.dreamhousing.beanResponse.Registration;
 import com.softcodeinfotech.dreamhousing.beanResponse.userSignin;
@@ -157,6 +159,20 @@ public class ServiceWrapper {
                 convertPlainString(path));
     }
 
+    //getLocation For Search
+
+    public Call<LocationResponse> getLocality(String securecode)
+    {
+        return  mServiceInterface.getLocation(convertPlainString(securecode));
+    }
+
+    //get property by location search
+
+    public  Call<PropertyResponseByLocation> getPropertyByLocationSearch(String securecode,String location,String property_type )
+    {
+        return mServiceInterface.getPropertyByLocation
+                (convertPlainString(securecode),convertPlainString(location),convertPlainString(property_type));
+    }
 
 
     // convert aa param into plain text
@@ -164,6 +180,9 @@ public class ServiceWrapper {
         RequestBody plainString = RequestBody.create(MediaType.parse("text/plain"), data);
         return plainString;
     }
+
+
+
 }
 
 

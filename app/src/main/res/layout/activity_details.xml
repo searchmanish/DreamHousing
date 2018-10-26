@@ -53,8 +53,9 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/shade"
+
                 android:elevation="7dp" />
+            <!--android:background="@drawable/shade"-->
 
         </android.support.design.widget.CollapsingToolbarLayout>
 

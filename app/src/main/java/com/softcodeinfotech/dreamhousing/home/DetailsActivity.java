@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.softcodeinfotech.dreamhousing.EnquireActivity;
 import com.softcodeinfotech.dreamhousing.R;
 import com.softcodeinfotech.dreamhousing.beanResponse.GetbannerModel;
@@ -101,7 +102,7 @@ public class DetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setNavigationIcon(R.drawable.back_button);
+        toolbar.setNavigationIcon(R.drawable.ic_left_arrow);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +142,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         setValueToWidget();
 
-        Log.i(TAG,property_id);
+       // Log.i(TAG,property_id);
       /*  //Banner slider
         bannerSlider = (BannerSlider) findViewById(R.id.image_slider);
 
@@ -154,7 +155,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.col_imageview);
         Glide.with(DetailsActivity.this)
-                .load(image_url)
+                .load(image_url).apply(new RequestOptions().placeholder(R.drawable.placeholder2).error(R.drawable.placeholder2))
                 .into(imageView);
         floatingActionButton = findViewById(R.id.floatingActionButton);
 
@@ -179,13 +180,20 @@ public class DetailsActivity extends AppCompatActivity {
        floatingActionButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailsActivity.this);
+
+
+               SlideFragment slideFragment = new SlideFragment();
+               slideFragment.setData(property_id , image_url);
+               slideFragment.show(getSupportFragmentManager() , "asd");
+
+
+               /*ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailsActivity.this);
                Intent multiImageIntent = new Intent(DetailsActivity.this,MultipleImageActivity.class);
                multiImageIntent.putExtra("Property_id",property_id);
                multiImageIntent.putExtra("url",image_url);
                multiImageIntent.putExtra(Constant.KEY_ANIM_TYPE, Constant.TransitionType.SlideXML);
               // multiImageIntent.putExtra("user_id",user_id);
-               startActivity(multiImageIntent,options.toBundle());
+               startActivity(multiImageIntent,options.toBundle());*/
 
            }
        });

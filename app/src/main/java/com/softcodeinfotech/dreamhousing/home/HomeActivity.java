@@ -35,6 +35,7 @@ import com.softcodeinfotech.dreamhousing.beanResponse.PropertyDetailsOwner;
 import com.softcodeinfotech.dreamhousing.login.SigninActivity;
 import com.softcodeinfotech.dreamhousing.myaccount.AddedProperty;
 import com.softcodeinfotech.dreamhousing.profile.ProfileActivity;
+import com.softcodeinfotech.dreamhousing.search.SearchActivity;
 import com.softcodeinfotech.dreamhousing.settings.SettingsActivity;
 import com.softcodeinfotech.dreamhousing.utility.AppUtilits;
 import com.softcodeinfotech.dreamhousing.utility.Constant;
@@ -83,6 +84,10 @@ private AHBottomNavigation bottomNavigation;
     private Toolbar mToolbar;
     private String TAG = "HomeActivity";
 
+    //TextView see all for search
+    TextView sellTextView,purchaseTextView,rentTextView;
+
+
     //app updater from playstore library
     AppUpdaterUtils appUpdaterUtils;
 
@@ -94,10 +99,15 @@ private AHBottomNavigation bottomNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_homee);
 
         //app updater from playstore library
+      setUpWidget();
 
+      //Visibility of see all button
+        sellTextView.setVisibility(View.GONE);
+        purchaseTextView.setVisibility(View.GONE);
+        rentTextView.setVisibility(View.GONE);
 
         appUpdaterUtils = new AppUpdaterUtils(this)
                 //.setUpdateFrom(UpdateFrom.AMAZON)
@@ -308,7 +318,39 @@ private AHBottomNavigation bottomNavigation;
        // bottomNavigationItems.add(item3);
 
         bottomNavigation.addItems(bottomNavigationItems);*/
+
+       sellTextView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent searchIntent = new Intent(HomeActivity.this, SearchActivity.class);
+               searchIntent.putExtra("clickedView","sell");
+               startActivity(searchIntent);
+
+           }
+       });
+
+       purchaseTextView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent searchIntent = new Intent(HomeActivity.this, SearchActivity.class);
+               searchIntent.putExtra("clickedView","purchase");
+               startActivity(searchIntent);
+
+           }
+       });
+
+       rentTextView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent searchIntent = new Intent(HomeActivity.this, SearchActivity.class);
+               searchIntent.putExtra("clickedView","rent");
+               startActivity(searchIntent);
+
+           }
+       });
     }
+
+
 
    /* private void setUpNavigationDrawer() {
         NavigationView navigationView = findViewById(R.id.navigationView);
@@ -353,6 +395,8 @@ private AHBottomNavigation bottomNavigation;
                         if (response.body().getStatus() == 1) {
                             // avi.hide();
                             avi.smoothToHide();
+                            sellTextView.setVisibility(View.VISIBLE);
+
                             enabledTitleTextViews();
                             if (response.body().getInformation().size() > 0) {
 
@@ -413,6 +457,8 @@ private AHBottomNavigation bottomNavigation;
                         if (response.body().getStatus() == 1) {
                             // avi.hide();
                             avi.smoothToHide();
+                            purchaseTextView.setVisibility(View.VISIBLE);
+
                             enabledTitleTextViews();
                             if (response.body().getInformation().size() > 0) {
 
@@ -475,6 +521,7 @@ private AHBottomNavigation bottomNavigation;
                         if (response.body().getStatus() == 1) {
                             // avi.hide();
                             avi.smoothToHide();
+                            rentTextView.setVisibility(View.VISIBLE);
                             enabledTitleTextViews();
                             if (response.body().getInformation().size() > 0) {
 
@@ -661,4 +708,13 @@ private AHBottomNavigation bottomNavigation;
         }
 
     }
+
+
+    private void setUpWidget() {
+        sellTextView = findViewById(R.id.textView_fresh_sell_all);
+        purchaseTextView = findViewById(R.id.textView_owner_sell_all);
+        rentTextView = findViewById(R.id.textView_hotdeals_sell_all);
+    }
+
+
 }
