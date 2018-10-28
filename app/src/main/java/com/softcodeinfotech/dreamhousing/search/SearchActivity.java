@@ -54,7 +54,7 @@ public class SearchActivity extends AppCompatActivity {
     String property_type;
     String clickedView;
 
-    ImageView imageSearch;
+    ImageView imageSearch,imageSearchButton;
 
     String TAG = "SearchActivity";
     private RecyclerView recycler_view;
@@ -85,7 +85,7 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle("Detail List");
+       // toolbar.setTitle("Detail List");
         toolbar.setNavigationIcon(R.drawable.back_button);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,11 +112,10 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 autoCompleteSearch.setVisibility(View.VISIBLE);
+                imageSearchButton.setVisibility(View.VISIBLE);
                 imageSearch.setVisibility(View.GONE);
             }
         });
-
-
 
 
         //get user id from Sharedpreferences
@@ -134,11 +133,9 @@ public class SearchActivity extends AppCompatActivity {
         recycler_view.setAdapter(searchDetailAdapter);
 
 
-
         //get property by searching with location
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1 ,location)
-        {
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, location) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
@@ -166,16 +163,28 @@ public class SearchActivity extends AppCompatActivity {
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
                 //
                 Object item = adapterView.getItemAtPosition(i);
-                selectedItem ="%"+item.toString()+"%";
+                selectedItem = "%" + item.toString() + "%";
                 getPropertyBylocationSearch();
                 // Toast.makeText(SearchActivity.this, ""+selectedItem, Toast.LENGTH_SHORT).show();
 
             }
         });
 
+        imageSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String getInputText=autoCompleteSearch.getText().toString().trim();
+                selectedItem = "%" + getInputText + "%";
+                //autoCompleteSearch.setText("");
+                getPropertyBylocationSearch();
+               // Toast.makeText(SearchActivity.this, ""+selectedItem, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
         final Intent intent = getIntent();
-          clickedView = intent.getExtras().getString("clickedView");
+        clickedView = intent.getExtras().getString("clickedView");
 
         if (clickedView.equals("sell"))
 
@@ -196,7 +205,6 @@ public class SearchActivity extends AppCompatActivity {
         }
 
     }
-
 
 
     private void getLocationDataReq() {
@@ -469,7 +477,7 @@ public class SearchActivity extends AppCompatActivity {
 
         } else {
             ServiceWrapper service = new ServiceWrapper(null);
-            Call<PropertyResponseByLocation> call = service.getPropertyByLocationSearch("1234",selectedItem,property_type);
+            Call<PropertyResponseByLocation> call = service.getPropertyByLocationSearch("1234", selectedItem, property_type);
             call.enqueue(new Callback<PropertyResponseByLocation>() {
                 @Override
                 public void onResponse(Call<PropertyResponseByLocation> call, Response<PropertyResponseByLocation> response) {
@@ -478,6 +486,7 @@ public class SearchActivity extends AppCompatActivity {
                         recycler_view.setVisibility(View.VISIBLE);
                         imageSearch.setVisibility(View.VISIBLE);
                         autoCompleteSearch.setVisibility(View.GONE);
+                        imageSearchButton.setVisibility(View.GONE);
                         mSearchDetailsList.clear();
                         if (response.body().getStatus() == 1) {
                             // avi.hide();
@@ -494,7 +503,7 @@ public class SearchActivity extends AppCompatActivity {
                                             response.body().getInformation().get(i).getPropertyAddress(),
                                             response.body().getInformation().get(i).getPropertyPhone(),
                                             response.body().getInformation().get(i).getPropertyImage(),
-                                            Double.valueOf (response.body().getInformation().get(i).getPropertyMrp()),
+                                            Double.valueOf(response.body().getInformation().get(i).getPropertyMrp()),
                                             String.valueOf(response.body().getInformation().get(i).getPropertyId())));
                                    /* mPDetailsModelFreshList.add(new PropertyDetailsModelFresh(response.body().getInformation().get(i).getPropertyDetails(), response.body().getInformation().get(i).getPropertyAddress(),
                                             response.body().getInformation().get(i).getPropertyMrp(), response.body().getInformation().get(i).getPropertyPhone(),response.body().getInformation().get(i).getPropertyImage()
@@ -536,7 +545,8 @@ public class SearchActivity extends AppCompatActivity {
     private void setupWidget() {
 
         autoCompleteSearch = findViewById(R.id.autoCompleteSearch);
-        imageSearch= findViewById(R.id.imageSearch);
+        imageSearch = findViewById(R.id.imageSearch);
+        imageSearchButton = findViewById(R.id.imageSearchButton);
 
     }
 
