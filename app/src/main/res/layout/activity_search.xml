@@ -34,9 +34,11 @@
 
         <AutoCompleteTextView
         android:id="@+id/autoCompleteSearch"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
             android:textColor="#000"
+            android:layout_weight="5"
+            android:textColorHint="#000"
             android:paddingEnd="@dimen/padding_medium_10dp"
             android:background="@drawable/round_corner_autocomplete"
             android:hint="Enter Location"
@@ -45,8 +47,9 @@
             />
             <ImageView
                 android:id="@+id/imageSearchButton"
+                android:layout_weight="1"
                 android:paddingLeft="@dimen/padding_small_5"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/search"
                 android:visibility="gone"
