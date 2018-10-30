@@ -32,6 +32,12 @@ public class SearchDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private String TAG ="SearchDetailAdapter";
     private int mScrenwidth;
 
+    public void setData(List mSearchDetailsList)
+    {
+        this.mSearchDetailsList=mSearchDetailsList;
+        notifyDataSetChanged();
+    }
+
     public SearchDetailAdapter(Context context, List<SearchDetailModel> list, int screenwidth)
     {
         mContext = context;

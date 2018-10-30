@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:paddingLeft="8dp"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="3dp"
             android:paddingLeft="8dp"
             android:textSize="12sp"
             android:textColor="@color/grey_800"
@@ -80,17 +80,24 @@
 
         <TextView
             android:id="@+id/acc_phone"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_below="@+id/acc_address"
+            android:padding="@dimen/padding_small_5"
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/acc_image"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="2dp"
             android:drawablePadding="@dimen/padding_medium_10dp"
             android:drawableStart="@drawable/material_call"
             android:maxLines="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="CALL AGENT" />
+            android:background="@drawable/call_button_background"
+            android:textColor="@color/white"
+            android:text="Call Agent"
+            android:textStyle="bold"/>
+
+
 
 
     </RelativeLayout>

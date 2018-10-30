@@ -14,9 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -54,7 +56,7 @@ public class SearchActivity extends AppCompatActivity {
     String property_type;
     String clickedView;
 
-    ImageView imageSearch,imageSearchButton;
+    ImageView imageSearch;
 
     String TAG = "SearchActivity";
     private RecyclerView recycler_view;
@@ -108,14 +110,9 @@ public class SearchActivity extends AppCompatActivity {
 
         getLocationDataReq();
 
-        imageSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                autoCompleteSearch.setVisibility(View.VISIBLE);
-                imageSearchButton.setVisibility(View.VISIBLE);
-                imageSearch.setVisibility(View.GONE);
-            }
-        });
+
+
+
 
 
         //get user id from Sharedpreferences
@@ -133,23 +130,7 @@ public class SearchActivity extends AppCompatActivity {
         recycler_view.setAdapter(searchDetailAdapter);
 
 
-        //get property by searching with location
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, location) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(Color.BLACK);
-                text.setBackgroundColor(Color.WHITE);
-                //drawView = new DrawView(SearchActivity.this);
-
-                //text.animate();
-                return view;
-            }
-        };
-        autoCompleteSearch.setAdapter(arrayAdapter);
-        autoCompleteSearch.setThreshold(1);
 
        /* Editable inputText = autoCompleteSearch.getText();
         Toast.makeText(SearchActivity.this, ""+inputText.toString(), Toast.LENGTH_SHORT).show();*/
@@ -166,18 +147,6 @@ public class SearchActivity extends AppCompatActivity {
                 selectedItem = "%" + item.toString() + "%";
                 getPropertyBylocationSearch();
                 // Toast.makeText(SearchActivity.this, ""+selectedItem, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        imageSearchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String getInputText=autoCompleteSearch.getText().toString().trim();
-                selectedItem = "%" + getInputText + "%";
-                //autoCompleteSearch.setText("");
-                getPropertyBylocationSearch();
-               // Toast.makeText(SearchActivity.this, ""+selectedItem, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -203,8 +172,69 @@ public class SearchActivity extends AppCompatActivity {
             propertyHotRes();
 
         }
+        imageSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (autoCompleteSearch.getVisibility() == View.VISIBLE) {
+                    recycler_view.setVisibility(View.GONE);
+                    String getInputText=autoCompleteSearch.getText().toString().trim();
+                    selectedItem = "%" + getInputText + "%";
+                    //autoCompleteSearch.setText("");
+                    //Toast.makeText(SearchActivity.this, selectedItem, Toast.LENGTH_SHORT).show();
+                    getPropertyBylocationSearch();
+                    //To Hide keyboard
+                    InputMethodManager imm = (InputMethodManager) getSystemService(SearchActivity.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                } else {
+                    autoCompleteSearch.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
+        autoCompleteSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                   recycler_view.setVisibility(View.GONE);
+                    String getInputText=autoCompleteSearch.getText().toString().trim();
+                    selectedItem = "%" + getInputText + "%";
+                    //autoCompleteSearch.setText("");
+                    //Toast.makeText(SearchActivity.this, selectedItem, Toast.LENGTH_SHORT).show();
+                    getPropertyBylocationSearch();
+                    //To Hide keyboard
+                    InputMethodManager imm = (InputMethodManager) getSystemService(SearchActivity.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+        //get property by searching with location
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, location) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(Color.BLACK);
+                text.setBackgroundColor(Color.WHITE);
+                //drawView = new DrawView(SearchActivity.this);
+
+                //text.animate();
+                return view;
+            }
+        };
+        autoCompleteSearch.setAdapter(arrayAdapter);
+        autoCompleteSearch.setThreshold(1);
 
     }
+
+
+
 
 
     private void getLocationDataReq() {
@@ -304,10 +334,14 @@ public class SearchActivity extends AppCompatActivity {
 */
                                 }
 
-                                searchDetailAdapter.notifyDataSetChanged();
+                                searchDetailAdapter.setData(mSearchDetailsList);
+                                //searchDetailAdapter.notifyDataSetChanged();
                             }
 
                         } else {
+                             ArrayList<SearchDetailModel> mSearchDetailsList1 = new ArrayList<SearchDetailModel>();
+
+                            searchDetailAdapter.setData(mSearchDetailsList1);
                             // avi.hide();
                             //  avi.smoothToHide();
                             Log.e(TAG, "failed to get rnew prod " + response.body().getMsg());
@@ -484,9 +518,6 @@ public class SearchActivity extends AppCompatActivity {
                     Log.e(TAG, " response is " + response.body().getInformation().toString());
                     if (response.body() != null && response.isSuccessful()) {
                         recycler_view.setVisibility(View.VISIBLE);
-                        imageSearch.setVisibility(View.VISIBLE);
-                        autoCompleteSearch.setVisibility(View.GONE);
-                        imageSearchButton.setVisibility(View.GONE);
                         mSearchDetailsList.clear();
                         if (response.body().getStatus() == 1) {
                             // avi.hide();
@@ -546,7 +577,7 @@ public class SearchActivity extends AppCompatActivity {
 
         autoCompleteSearch = findViewById(R.id.autoCompleteSearch);
         imageSearch = findViewById(R.id.imageSearch);
-        imageSearchButton = findViewById(R.id.imageSearchButton);
+
 
     }
 

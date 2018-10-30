@@ -69,8 +69,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_left_arrow" />
-                            <entry key="sourceFile" value="C:\Users\Manish\Desktop\back\left-arrow.svg" />
+                            <entry key="outputName" value="ic_back_button4" />
+                            <entry key="sourceFile" value="C:\Users\Manish\Desktop\back\back_button4.svg" />
                           </map>
                         </option>
                       </PersistentState>
