@@ -127,5 +127,6 @@ public class SearchDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-        return mSearchDetailsList.size();    }
+        return mSearchDetailsList.size();
+    }
 }
