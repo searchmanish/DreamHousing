@@ -89,12 +89,13 @@
             android:layout_toRightOf="@+id/acc_image"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="2dp"
-            android:drawablePadding="@dimen/padding_medium_10dp"
+            android:drawablePadding="@dimen/padding_small_5"
             android:drawableStart="@drawable/material_call"
             android:maxLines="1"
             android:background="@drawable/call_button_background"
             android:textColor="@color/white"
             android:text="Call Agent"
+            android:textSize="12sp"
             android:textStyle="bold"/>
 
 

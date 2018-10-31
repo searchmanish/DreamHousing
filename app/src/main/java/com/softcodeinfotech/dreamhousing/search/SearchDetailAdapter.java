@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.softcodeinfotech.dreamhousing.EnquireActivity;
 import com.softcodeinfotech.dreamhousing.R;
+import com.softcodeinfotech.dreamhousing.home.DetailsActivity;
 import com.softcodeinfotech.dreamhousing.myaccount.AccountDetailsAdapter;
 import com.softcodeinfotech.dreamhousing.myaccount.AccountDetailsModel;
 
@@ -57,6 +59,8 @@ public class SearchDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView accDetails_mrp;
         CardView cardView;
 
+        TextView enquire;
+
 
         public SearchDetailAdapterHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +72,7 @@ public class SearchDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             accDetails_phone=itemView.findViewById(R.id.acc_phone);
             accDetails_mrp=itemView.findViewById(R.id.acc_mrp);
             cardView=itemView.findViewById(R.id.acc_card_view);
+            enquire =itemView.findViewById(R.id.acc_email);
         }
     }
 
@@ -75,7 +80,7 @@ public class SearchDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item4, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item5, parent,false);
         // Log.e(TAG, "  view created ");
         return new SearchDetailAdapter.SearchDetailAdapterHolder(view);    }
 
@@ -109,6 +114,13 @@ public class SearchDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                 mContext.startActivity(intent);
 
+            }
+        });
+        ((SearchDetailAdapterHolder)holder).enquire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent enquireIntent = new Intent(mContext, EnquireActivity.class);
+               mContext.startActivity(enquireIntent);
             }
         });
     }
